@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    color: aliceblue;
+}
+h1{
+    text-align: center;
+    margin-top: 10px;
+}
+.container{
+    div:nth-child(2){
+        background-color: rgb(200, 18, 18);
+        animation: color1 5s linear both alternate infinite;
+    }
+    div:nth-child(3){
+        background-color: rgb(221, 210, 17);
+        animation: color2 6s linear both alternate infinite;
+    }
+    div:nth-child(4){ 
+        background-color: rgb(40, 218, 40);
+        animation: color3 7s linear both alternate infinite;
+    }
+}
+
+
+.container>div{
+    width: 200px;
+    height: 200px;
+    background-color: rgba(240, 248, 255, 0.712);
+    clip-path: circle(50%);
+    margin-top: 10px;
+}
+
+
+@keyframes color1 {
+    0%{
+        background-color: rgb(200, 18, 18);
+        transform: translate(0);
+    }
+    50%{
+        background-color: rgb(221, 210, 17);
+        transform: translate(85vw);
+        
+    }
+    100%{
+        background-color: rgb(40, 218, 40);
+        transform: translate(0);
+    }
+}
+@keyframes color2 {
+    0%{
+        background-color: rgb(221, 210, 17);
+        transform: translate(0);
+    }
+    50%{
+        background-color: rgb(40, 218, 40);
+        transform: translate(85vw);
+    }
+    100%{
+        background-color: rgb(200, 18, 18);
+        transform: translate(0);
+    }
+}
+@keyframes color3 {
+    0%{
+        background-color: rgb(40, 218, 40);
+        transform: translate(0);
+    }
+    50%{
+        background-color: rgb(200, 18, 18);
+        transform: translate(85vw)
+    }
+    100%{
+        background-color: rgb(221, 210, 17);
+        transform: translate(0);
+    }
+}
