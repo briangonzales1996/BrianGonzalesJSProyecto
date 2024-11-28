@@ -44,22 +44,22 @@ const buscarID = (produc,id)=>{
     }
     return idUsado
 }
-
 function verificarId(){
-    let  id = parseInt(prompt("ingrese el id del producto"));
-    while(id || isNaN(id)){
-        if(variablesGlobales.productos.length !== 0){
-            let idUsado = buscarID(variablesGlobales.productos,id);
-            if(idUsado === false){
-                id = parseInt(prompt("ingrese otro id porque ya se encuentra registrado"));
-            }
-            else{return id}       
+    while(true){
+        let  id = parseInt(prompt("ingrese el id del producto"));
+        if(isNaN(id)){
+            alert("el id esta invalido ingrese un numero");
+            continue;
         }
-        else{
-            return id
+        if(variablesGlobales.productos.length === 0){
+            return id;
         }
+        const idUsado = buscarID(variablesGlobales.productos,id);
+        if(true === idUsado){
+            return id;
+        }
+        alert("el id ya esta registrado")
     }
-    
 }
 
 function agregarProducto (){

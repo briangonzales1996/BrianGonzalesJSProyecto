@@ -106,7 +106,7 @@ header{
             }
         }
         button{
-            background-color: rgba(0, 0, 0, 0);
+            background-color:rgba(0, 0, 0, 0.701);
             color: inherit;
             padding: 10px 0;
             font-size: 1rem;
