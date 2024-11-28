@@ -1,3 +1,4 @@
+
 "use strict" 
 //variables u objetos
 class Productos{
@@ -106,23 +107,27 @@ const eliminarProducto = ()=>{
 }
 
 //Inicio del programa
-do{
-    variablesGlobales.opcion = prompt("Este es su carrito\nSelecciona una de la siguientes opciones\n\n1-Agregar producto a la lista\n2-Eliminar producto de la lista\n3-Mostrar lista de productos agregados\n4-Buscar producto\n5-Salir");
-    variablesGlobales.opcion = parseInt(variablesGlobales.opcion)
-    switch(variablesGlobales.opcion){
-        case 1 : agregarProducto();break;
-        case 2 : { let productoEliminado = eliminarProducto()
-            alert(productoEliminado);
-            break;
+document.addEventListener('DOMContentLoaded',function(){
+    do{
+        variablesGlobales.opcion = prompt("Este es su carrito\nSelecciona una de la siguientes opciones\n\n1-Agregar producto a la lista\n2-Eliminar producto de la lista\n3-Mostrar lista de productos agregados\n4-Buscar producto\n5-Salir");
+        variablesGlobales.opcion = parseInt(variablesGlobales.opcion)
+        switch(variablesGlobales.opcion){
+            case 1 : agregarProducto();break;
+            case 2 : { let productoEliminado = eliminarProducto()
+                alert(productoEliminado);
+                break;
+            }
+            case 3 : mostrarProductos();break;
+            case 4 : buscarProducto();break;
+            case 5 : alert("Gracias por utilizar nuestro servicio. Hasta luego");break;
+            default: alert('la opcion ingresada es incorrecta');break;
         }
-        case 3 : mostrarProductos();break;
-        case 4 : buscarProducto();break;
-        case 5 : alert("Gracias por utilizar nuestro servicio. Hasta luego");break;
-        default: alert('la opcion ingresada es incorrecta');break;
+    
     }
+    while(variablesGlobales.opcion != 5);
+})
 
-}
-while(variablesGlobales.opcion != 5);
+
 
 
 
