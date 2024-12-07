@@ -10,8 +10,40 @@
 <body>
     <header>
         <nav class="menu">
-            <p id="desplegar__menu" class="material-symbols-outlined">menu</p>
-            <figure><img src="./assets/icons8-carrito-de-compras-100.png" alt=""><span id="carrito__total" class="carrito__contar">10</span></figure>
+            <div class="menu__logo">
+                <p id="desplegar__menu" class="material-symbols-outlined">menu</p>
+                <figure><a href="#"><img src="./assets/log.png" alt="logo"></a></figure>
+            </div>
+           
+            <form class="menu__buscador" action="">
+                <div>
+                <label aria-label="" for=""></label>
+                <input placeholder="Bucar producto..." type="text">
+                <span class="material-symbols-outlined">search</span>
+                </div>
+                
+                
+            </form>
+            <div class="menu__secion--carrito">
+                <ul>
+                    <li><p> ACCEDER</p></li>
+                    <li>
+                        <select name="moneda" id="">
+                            <option value="pesos">ARG</option>
+                            <option value="dolar">USD</option>
+                            <option value="euro">EUR</option>
+                        </select>
+                    </li>
+                    <li>
+                        <div class="menu__carrito">
+                            <p>10</p>
+                            <p>ARS</p>
+                            <figure><img src="./assets/icons8-carrito-de-compras-100.png" alt=""><span>10</span></figure>
+                        </div>
+                        
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
     
@@ -25,39 +57,38 @@
         </div>
         <div id="filtros__desplegable" class="filtros__menu">
             <h3>Filtros</h3>
-            <div class="filtros__menu__plataforma subMenu">
-                <div>
+            <div class="filtros__menu__plataforma ">
+                <div class="subMenu">
                     <p>Plataforma</p>
                     <span class="material-symbols-outlined ">chevron_right</span>
                 </div>
-                <ul>
-                    <li>Play 3</li>
-                    <li>Play 3</li>
-                    <li>Play 3</li>
+                <ul id="filtros__plataforma">
+                    <li>Ps 3</li>
+                    <li>Ps 4</li>
+                    <li>Ps 5</li>
                 </ul>
             </div>
-            <div  class="filtros__menu__genero subMenu">
-                <div>
+            <div  class="filtros__menu__genero ">
+                <div class="subMenu">
                     <p>Genero</p>
                     <span class="material-symbols-outlined">chevron_right</span>
                 </div>
-                <ul>
-                    <li>Terror</li>
+                <ul id="filtros__genero">
+                    <li>Horror</li>
                     <li>Aventura</li>
                     <li>Supervivencia</li>
+                    <li>Accion</li>
+                    <li>Lucha</li>
+                    <li>Realista</li>
                 </ul>
             </div>
         </div>
         
     </aside>
 
-    <main>
-        <section>
-            <article>
-                
-            </article>
+    <main class="lista">
+        <section id="lista" class="lista__productos">
 
-            
         </section>
     </main>    
     <script src="./js/op.js" defer></script>
