@@ -22,9 +22,10 @@ header{
         z-index: 2;
         align-items: center;
         padding: 10px 20px;
-        max-width: 80vw;
+        max-width: 75vw;
         margin: auto;
         .menu__logo{
+            display: flex;
             p{
                 font-size: 2rem;
                 font-weight: 300;
@@ -34,30 +35,43 @@ header{
         }
         .menu__buscador{
             display: flex;
-            flex-grow: 1;
-            div{
-            
-            display: flex;
-            align-items: center ;
-            background-color: rgb(34, 34, 41);
-            border-radius: 15px;
-            padding: 4px;
-            flex-grow: 1;
-            max-width: 700px;
-            margin: auto;
-            input{
-                min-height: 20px;
-                outline: none;
+                justify-content: center ;
                 background-color: rgb(34, 34, 41);
-                color: inherit;
-                border: none;
+                border-radius: 15px;
+                flex-grow: 1;
+                max-width: 700px;
+                margin: auto;
+                flex-direction: column;
+            
+            .menu__buscador__buscar{
+                display: flex;
+                align-items: center ;
+                background-color: var(--fondoBuscador);
+                border-radius: 15px;
                 padding: 4px;
                 flex-grow: 1;
                 
+                input{
+                    min-height: 20px;
+                    outline: none;
+                    background-color: var(--fondoBuscador);
+                    color: inherit;
+                    border: none;
+                    padding: 4px;
+                    flex-grow: 1;
+                    font-size: 1rem;
+                }
+                span{
+                    cursor: pointer;
+                    
+                }
             }
-            span{
-                cursor: pointer;
-            }
+            .menu__buscador__relacionado{
+                padding: 4px 8px;
+                border-top:solid 1px rgba(255, 255, 255, 0.168);
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
             }
         }
         

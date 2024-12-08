@@ -16,12 +16,16 @@
             </div>
            
             <form class="menu__buscador" action="">
-                <div>
-                <label aria-label="" for=""></label>
-                <input placeholder="Bucar producto..." type="text">
-                <span class="material-symbols-outlined">search</span>
+                <div class="menu__buscador__buscar">
+                <label  for="buscador"></label>
+                <input id="buscador" placeholder="Buscar producto..." type="text">
+                <span id="buscar" class="material-symbols-outlined">search</span>
                 </div>
-                
+                <div class="menu__buscador__relacionado">
+                    <p>Resident evil 7</p>
+                    <p>Resident evil 8</p>
+                    <p>Resident evil 0</p>
+                </div>
                 
             </form>
             <div class="menu__secion--carrito">
@@ -91,6 +95,6 @@
 
         </section>
     </main>    
-    <script src="./js/op.js" defer></script>
+    <script type="module" src="./js/op.js" defer></script>
 </body>
 </html>

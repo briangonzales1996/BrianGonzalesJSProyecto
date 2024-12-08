@@ -166,7 +166,7 @@ const listaJuegos =[{
 
 
 //funciones
-
+//despliegue del filtrado
 function subMenu(){
     const filtro = document.querySelectorAll(".subMenu");
     filtro.forEach((elemento)=>{
@@ -190,6 +190,7 @@ const desplegarFiltro = ()=>{
     })
 }
 
+//filtrar lista de productos
 const crearListaHTML=({nombre = "",genero="",precio="",imagenURL=""},fragmento)=>{
     const lista = document.getElementById('lista');
 	lista.innerHTML="";
@@ -247,8 +248,6 @@ function agregandoListaFiltrada(listaFiltrada){
 
 const eventoClick = function (e,tipo){
     const verificar = e.target.textContent.toLowerCase().replace(/\s+/g, '');
-	console.log(tipo)
-	console.log(verificar)
     const listaFiltrada=listaJuegos.filter(item=>{
         return item[tipo] === verificar;
     });
@@ -257,12 +256,30 @@ const eventoClick = function (e,tipo){
 	agregarListaHTML(listaJuegos):agregandoListaFiltrada(listaFiltrada);
 }
 
-//filtrar por genero
+//buscador funciones
+const buscador = ()=>{
+	const buscar = document.getElementById('buscar');
+	const resultados = document.getElementById('buscador');
+	buscar.addEventListener("click",()=>{		
+		busquedaComprobar(resultados.value)
+	})
+}
 
-
-
-
-
+const busquedaComprobar =(buscar)=>{
+	let productoEncotrado = [];
+	for(let juego in listaJuegos){
+	let nombreJuego = listaJuegos[juego].nombre.toLowerCase();
+	if(nombreJuego.includes(buscar))productoEncotrado.push(listaJuegos[juego])
+	}
+	agregarListaHTML(productoEncotrado);
+}
+//buscador productos relacionados
+const buscadorProductosRelacionados = ()=>{
+	const buscarProducto = document.getElementById('buscador');
+	buscarProducto.addEventListener('input',(e)=>{
+		console.log(buscarProducto.value)
+	})
+}
 //inicio del programa
 
 subMenu();
@@ -270,8 +287,6 @@ desplegarFiltro();
 agregarListaHTML(listaJuegos); //cagando al doom la lista del objeto
 filtrado(document.getElementById('filtros__plataforma'),"plataforma");
 filtrado(document.getElementById('filtros__genero'),'genero');
-
-
-
-
+buscador();
+buscadorProductosRelacionados();
 
