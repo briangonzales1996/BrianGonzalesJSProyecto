@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProyectoJS</title>
+    <title>MisterioGaming</title>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-    <header>
+    <header >
         <nav class="menu">
             <div class="menu__logo">
                 <p id="desplegar__menu" class="material-symbols-outlined">menu</p>
@@ -17,16 +17,13 @@
            
             <form class="menu__buscador" action="">
                 <div class="menu__buscador__buscar">
-                <label  for="buscador"></label>
-                <input id="buscador" placeholder="Buscar producto..." type="text">
-                <span id="buscar" class="material-symbols-outlined">search</span>
+                    <label  for="buscador"></label>
+                    <input id="buscador" placeholder="Buscar producto..." type="text">
+                    <span id="buscar" class="material-symbols-outlined">search</span>
                 </div>
-                <div class="menu__buscador__relacionado">
-                    <p>Resident evil 7</p>
-                    <p>Resident evil 8</p>
-                    <p>Resident evil 0</p>
+                <div id="productosRelacionados" class="menu__buscador__relacionado">
+
                 </div>
-                
             </form>
             <div class="menu__secion--carrito">
                 <ul>
@@ -39,11 +36,11 @@
                         </select>
                     </li>
                     <li>
-                        <div class="menu__carrito">
+                        <a href="./carrito.html" class="menu__carrito">
                             <p>10</p>
                             <p>ARS</p>
                             <figure><img src="./assets/icons8-carrito-de-compras-100.png" alt=""><span>10</span></figure>
-                        </div>
+                        </a>
                         
                     </li>
                 </ul>
@@ -96,5 +93,6 @@
         </section>
     </main>    
     <script type="module" src="./js/op.js" defer></script>
+    
 </body>
 </html>

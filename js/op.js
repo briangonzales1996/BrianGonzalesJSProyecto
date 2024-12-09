@@ -183,8 +183,8 @@ function subMenu(){
 
 const desplegarFiltro = ()=>{
     const ocultarMenu = document.getElementById('desplegar__menu');
-    const left = document.getElementById('filtros');
-    left.style.left = 0;
+    const left = document.getElementById('filtros')||"";
+	if(left)left.style.left = 0;
     ocultarMenu.addEventListener('click',()=>{
         left.style.left == "0px" ? left.style.left = `${-400}px` : left.style.left = `${0}px`;
     })
@@ -232,12 +232,12 @@ const agregarListaHTML=(lista = [])=>{
     document.getElementById('lista').appendChild(fragmento);
 }
 
-const filtrado = (filtro,tipo)=>{
+const filtrado = (filtro='',tipo='')=>{
     filtro.addEventListener('click',e=>eventoClick(e,tipo));
 	
 }
 
-function agregandoListaFiltrada(listaFiltrada){
+function agregandoListaFiltrada(listaFiltrada=[]){
 	//comprobamos lista vacia
 	if(listaFiltrada.length !== 0 ){
 		const lista = document.getElementById('lista');
@@ -262,10 +262,13 @@ const buscador = ()=>{
 	const resultados = document.getElementById('buscador');
 	buscar.addEventListener("click",()=>{		
 		busquedaComprobar(resultados.value)
+		resultados.value="";
+		document.getElementById('productosRelacionados').innerHTML="";
+		productosRelacionados.style.borderTop = `none`
 	})
 }
 
-const busquedaComprobar =(buscar)=>{
+const busquedaComprobar =(buscar='')=>{
 	let productoEncotrado = [];
 	for(let juego in listaJuegos){
 	let nombreJuego = listaJuegos[juego].nombre.toLowerCase();
@@ -273,13 +276,59 @@ const busquedaComprobar =(buscar)=>{
 	}
 	agregarListaHTML(productoEncotrado);
 }
+
 //buscador productos relacionados
-const buscadorProductosRelacionados = ()=>{
+function buscadorAgregarHTMLRelacionado(producto={}){
+	const contenedorRelacionado = document.getElementById('productosRelacionados');
+	const p = document.createElement('P');
+	p.textContent=(producto.nombre).toLowerCase();
+	contenedorRelacionado.appendChild(p);
+	seleccionarResultado(p,producto);
+}
+
+
+const elementosResultado = (buscarProducto="")=>{
+	const resultados = listaJuegos.filter((juego)=>{
+		return juego.nombre.toLowerCase().startsWith(buscarProducto.value.toLowerCase())
+	});
+	if(resultados.length===0)document.getElementById('productosRelacionados').style.borderTop = `none`
+	document.getElementById('productosRelacionados').innerHTML="";
+	resultados.forEach(producto=>{
+		document.getElementById('productosRelacionados').style.borderTop = `solid ${1}px rgba(${255},${255},${255},${0.168})`
+		buscadorAgregarHTMLRelacionado(producto);
+		
+	})
+	
+}
+
+const buscadorProductosRelacionadosTeclado = ()=>{
 	const buscarProducto = document.getElementById('buscador');
 	buscarProducto.addEventListener('input',(e)=>{
-		console.log(buscarProducto.value)
+		
+		buscarProducto.value!==""?
+		elementosResultado(buscarProducto):
+		agregarBorde();
+	})
+function agregarBorde(){
+	const productosRelacionados = document.getElementById('productosRelacionados');
+	productosRelacionados.innerHTML="";
+	productosRelacionados.style.borderTop = `none`
+}
+}
+//seleccionar elemento relacionado
+const seleccionarResultado=(p="",producto={})=>{
+	p.addEventListener('click',()=>{
+		let fragmento = document.createDocumentFragment();
+		fragmento = crearListaHTML(producto,fragmento);
+		document.getElementById('lista').appendChild(fragmento);
+		document.getElementById('productosRelacionados').innerHTML="";
+		document.getElementById('buscador').value = "";
+		productosRelacionados.style.borderTop = `none`
 	})
 }
+
+
+
 //inicio del programa
 
 subMenu();
@@ -288,5 +337,11 @@ agregarListaHTML(listaJuegos); //cagando al doom la lista del objeto
 filtrado(document.getElementById('filtros__plataforma'),"plataforma");
 filtrado(document.getElementById('filtros__genero'),'genero');
 buscador();
-buscadorProductosRelacionados();
+buscadorProductosRelacionadosTeclado();
+
+export function mandarObjeto(){
+	const objeto = listaJuegos;
+	return objeto
+}
+
 
