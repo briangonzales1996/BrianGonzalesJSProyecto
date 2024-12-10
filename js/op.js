@@ -304,13 +304,13 @@ const elementosResultado = (buscarProducto="")=>{
 
 const buscadorProductosRelacionadosTeclado = ()=>{
 	const buscarProducto = document.getElementById('buscador');
-	if(buscarProducto){
+	
 		buscarProducto.addEventListener('input',(e)=>{
 			buscarProducto.value!==""?
 			elementosResultado(buscarProducto):
 			agregarBorde();
 		})
-	}
+	
 function agregarBorde(){
 	const productosRelacionados = document.getElementById('productosRelacionados');
 	productosRelacionados.innerHTML="";
@@ -345,20 +345,23 @@ buscadorProductosRelacionadosTeclado();
 
 //seleccion del elemento para el carrito
 const seleccionarProductoLista = ()=>{
-	
-	let mostrar ="";
-	if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+	return  new Promise((resolve,reject)=>{
+		let mostrar ="";
+		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
 		
-		if(e.target.id === e.target.parentElement.parentElement.id) mostrar= e.target.parentElement.parentElement	
-		else mostrar = e.target.parentElement
+			if(e.target.id === e.target.parentElement.parentElement.id) mostrar= e.target.parentElement.parentElement	
+			else mostrar = e.target.parentElement
 		
-		return mostrar;
+			resolve(mostrar);
+		})
+
 	})
+	
 }	
 
 
-export const  seleccionar = seleccionarProductoLista()
-	console
+
+	
 
 
 
