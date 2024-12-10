@@ -23,7 +23,7 @@ const listaJuegos =[{
 	"genero":"accion",
 	"precio": "10.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/Combo-accion-A-1-245x300.jpg"
+	"imagenURL": "./assets/Combo-Accion-A-1-245x300.jpg"
  },
 {
 	"nombre":"Crash bandicoot",
@@ -358,7 +358,7 @@ const seleccionarProductoLista = ()=>{
 
 
 export const  seleccionar = seleccionarProductoLista()
-	
+	console
 
 
 
