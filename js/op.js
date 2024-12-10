@@ -184,8 +184,9 @@ function subMenu(){
 const desplegarFiltro = ()=>{
     const ocultarMenu = document.getElementById('desplegar__menu');
     const left = document.getElementById('filtros')||"";
+	//verifica si existe elemento del doom
 	if(left)left.style.left = 0;
-    ocultarMenu.addEventListener('click',()=>{
+    if(ocultarMenu)ocultarMenu.addEventListener('click',()=>{
         left.style.left == "0px" ? left.style.left = `${-400}px` : left.style.left = `${0}px`;
     })
 }
@@ -193,7 +194,7 @@ const desplegarFiltro = ()=>{
 //filtrar lista de productos
 const crearListaHTML=({nombre = "",genero="",precio="",imagenURL=""},fragmento)=>{
     const lista = document.getElementById('lista');
-	lista.innerHTML="";
+	if(lista)lista.innerHTML="";
 	const productos = document.createElement('ARTICLE');
     const figure =document.createElement('FIGURE');
     const img = document.createElement('IMG');
@@ -229,11 +230,11 @@ const agregarListaHTML=(lista = [])=>{
     lista.forEach((item)=>{
         fragmento=crearListaHTML(item,fragmento);
     })
-    document.getElementById('lista').appendChild(fragmento);
+    if(document.getElementById('lista'))document.getElementById('lista').appendChild(fragmento);
 }
 
 const filtrado = (filtro='',tipo='')=>{
-    filtro.addEventListener('click',e=>eventoClick(e,tipo));
+    if(filtro)filtro.addEventListener('click',e=>eventoClick(e,tipo));
 	
 }
 
@@ -260,11 +261,11 @@ const eventoClick = function (e,tipo){
 const buscador = ()=>{
 	const buscar = document.getElementById('buscar');
 	const resultados = document.getElementById('buscador');
-	buscar.addEventListener("click",()=>{		
+	if(buscar)buscar.addEventListener("click",()=>{		
 		busquedaComprobar(resultados.value)
 		resultados.value="";
 		document.getElementById('productosRelacionados').innerHTML="";
-		productosRelacionados.style.borderTop = `none`
+		productosRelacionados.style.borderTop = `none`;
 	})
 }
 
@@ -303,12 +304,13 @@ const elementosResultado = (buscarProducto="")=>{
 
 const buscadorProductosRelacionadosTeclado = ()=>{
 	const buscarProducto = document.getElementById('buscador');
-	buscarProducto.addEventListener('input',(e)=>{
-		
-		buscarProducto.value!==""?
-		elementosResultado(buscarProducto):
-		agregarBorde();
-	})
+	if(buscarProducto){
+		buscarProducto.addEventListener('input',(e)=>{
+			buscarProducto.value!==""?
+			elementosResultado(buscarProducto):
+			agregarBorde();
+		})
+	}
 function agregarBorde(){
 	const productosRelacionados = document.getElementById('productosRelacionados');
 	productosRelacionados.innerHTML="";
@@ -339,9 +341,34 @@ filtrado(document.getElementById('filtros__genero'),'genero');
 buscador();
 buscadorProductosRelacionadosTeclado();
 
+
+
+//seleccion del elemento para el carrito
+const seleccionarProductoLista = ()=>{
+	
+	let mostrar ="";
+	if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+		
+		if(e.target.id === e.target.parentElement.parentElement.id) mostrar= e.target.parentElement.parentElement	
+		else mostrar = e.target.parentElement
+		
+		return mostrar;
+	})
+}	
+
+
+export const  seleccionar = seleccionarProductoLista()
+	
+
+
+
+
 export function mandarObjeto(){
 	const objeto = listaJuegos;
 	return objeto
 }
 
+
+
+	
 

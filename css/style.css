@@ -276,6 +276,94 @@ header{
     }
 }
 
+/*carritos---------carrito*/
+.carrito{
+    width: max-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 30px;
+    min-height: 100vh;
+    .carrito__titulo{
+        h3{
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+    div{
+        .carrito__contenedor-productos{
+            display: flex;
+            gap: 2rem;
+            flex-direction: column;
+            article{
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                div:first-child{
+                    p{
+                        font-size: 1rem;
+                        padding: 5px 7px;
+                        border: 2px solid var(--fontColor);
+                        border-radius: 50%;
+                        width: min-content;
+                        &:hover{
+                            background-color: rgba(240, 248, 255, 0.303);
+                            cursor: pointer;
+                        }
+                    }
+                }
+                figure{
+                    width: 80px;
+                    height: 100px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                div:nth-child(3){
+                    font-size: 1.3rem;
+                }
+                div:last-child{
+                    font-size: 1.3rem;
+                    margin-left: 30px;
+                }
+            }
+        }
+
+    }
+    .carrito__precioTotal{
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .carrito__botones{
+        display: flex;
+        justify-content: space-around;
+        
+        button{
+            background-color: rgb(121, 121, 121);
+            font-weight: 800;
+            color: var(--fondo);
+            padding: 10px;
+            cursor: pointer;
+            &:last-child:hover{
+                color: var(--fontColor);
+            }
+        }
+        button:first-child{
+            border: solid 1px var(--fontColor);
+            background-color: var(--fondo);
+            color: var(--fontColor);
+            font-weight: 500;
+            &:hover{
+                background-color: rgba(240, 248, 255, 0.303);
+            }
+        }
+    }
+}
+
 
 
 @media screen and (max-width:400px){
@@ -291,7 +379,6 @@ header{
         .lista__productos{
             grid-template-rows: 400px;
             grid-auto-rows: 400px;
-            
         }
     }
 }
