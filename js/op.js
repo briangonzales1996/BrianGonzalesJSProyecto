@@ -305,7 +305,7 @@ const elementosResultado = (buscarProducto="")=>{
 const buscadorProductosRelacionadosTeclado = ()=>{
 	const buscarProducto = document.getElementById('buscador');
 	
-		buscarProducto.addEventListener('input',(e)=>{
+		if(buscarProducto)buscarProducto.addEventListener('input',(e)=>{
 			buscarProducto.value!==""?
 			elementosResultado(buscarProducto):
 			agregarBorde();
@@ -345,25 +345,24 @@ buscadorProductosRelacionadosTeclado();
 
 //seleccion del elemento para el carrito
 const seleccionarProductoLista = ()=>{
-	return  new Promise((resolve,reject)=>{
-		let mostrar ="";
-		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+	let seleccion=[]
+		if(localStorage.getItem("producto")){
+			seleccion = localStorage.getItem("producto");
+			seleccion = JSON.parse(seleccion);
+		}
+			let mostrar ="";
+			if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+				if(e.target.id === e.target.parentElement.parentElement.id) mostrar= e.target.parentElement.parentElement	
+				else mostrar = e.target.parentElement;
+				mostrar.childNodes[2].textContent.toLowerCase()
+				mostrar = mostrar.childNodes[2].textContent.toLowerCase()
+				seleccion.push(mostrar);
+				localStorage.setItem("producto",JSON.stringify(seleccion))
+			
+			})
 		
-			if(e.target.id === e.target.parentElement.parentElement.id) mostrar= e.target.parentElement.parentElement	
-			else mostrar = e.target.parentElement
-		
-			resolve(mostrar);
-		})
-
-	})
-	
 }	
-
-
-
-	
-
-
+seleccionarProductoLista()
 
 
 export function mandarObjeto(){
@@ -371,7 +370,4 @@ export function mandarObjeto(){
 	return objeto
 }
 
-
-
-	
 
