@@ -278,7 +278,7 @@ header{
 
 /*carritos---------carrito*/
 .carrito{
-    width: max-content;
+    width: 550px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -323,9 +323,13 @@ header{
                     }
                 }
                 div:nth-child(3){
+                flex-grow: 1;
+                flex-basis: 0;
                     font-size: 1.3rem;
                 }
                 div:last-child{
+                flex-grow: 1;
+                flex-basis: 0;
                     font-size: 1.3rem;
                     margin-left: 30px;
                 }
@@ -359,6 +363,21 @@ header{
             font-weight: 500;
             &:hover{
                 background-color: rgba(240, 248, 255, 0.303);
+            }
+        }
+    }
+    .carrito__vacio{
+        div{
+            background-color: var(--fondoBuscador);
+            padding: 30px 40px;
+            border-radius: 30px;
+            text-align: center;
+            h2{
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            h3{
+                font-size: 1.4rem;
             }
         }
     }

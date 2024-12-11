@@ -4,12 +4,12 @@ const variablesGlobales = {
     listaJuegos:[],
     listaParaAgregar:[]
 }
-
-variablesGlobales.listaJuegos = mandarObjeto() 
+variablesGlobales.listaJuegos = mandarObjeto()||[] 
 variablesGlobales.producto = localStorage.getItem("producto");
-variablesGlobales.producto= JSON.parse(variablesGlobales.producto)
+variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[];
 
-
+//FUNCIONES
+//verifico los listaJuegoscon con lo obtenido del local storage
 const verificarElemento =()=>{
     let  productoVerificados = [];
     variablesGlobales.producto.forEach(producto => {
@@ -21,9 +21,12 @@ const verificarElemento =()=>{
     });
     return productoVerificados;
 }
-variablesGlobales.listaParaAgregar = verificarElemento()||[];
 
-
+const carritoVacio=()=>{
+    console.log("carrito esa vacio")
+    
+}
+//agregar al carrito los productos seleccionados o filtrados
 const agregandoProductoCarrito=({nombre="",precio="",imagenURL=""},fragmento="")=>{
     
     const article = document.createElement('ARTICLE');
@@ -50,13 +53,8 @@ const agregandoProductoCarrito=({nombre="",precio="",imagenURL=""},fragmento="")
     article.appendChild(figure);
     article.appendChild(div2);
     article.appendChild(div3);
-    
-    
     fragmento.appendChild(article);
-
-
 }
-
 const añadirFragmento = (productos)=>{
     const contenedor = document.getElementById('carritoProductos');
     const fragmento = document.createDocumentFragment();
@@ -64,16 +62,20 @@ const añadirFragmento = (productos)=>{
     productos.forEach((item)=>{
         agregandoProductoCarrito(item,fragmento);
     })
-    
-contenedoProductos.appendChild(fragmento);
-contenedor.appendChild(contenedoProductos)
-contenedoProductos.classList.add('carrito__contenedor-productos');
-    
+    contenedoProductos.appendChild(fragmento);
+    contenedor.appendChild(contenedoProductos)
+    contenedoProductos.classList.add('carrito__contenedor-productos');
+}
+//para simplificar la funcion para el operador
+const verificarAñadir = () =>{
+    variablesGlobales.listaParaAgregar = verificarElemento()||[];
+    añadirFragmento(variablesGlobales.listaParaAgregar)
 }
 
 console.log(verificarElemento())
 
 
 //INICIO DEL PROGRAMA
-variablesGlobales.listaParaAgregar
-añadirFragmento(variablesGlobales.listaParaAgregar)
+variablesGlobales.producto.length === 0?
+carritoVacio():verificarAñadir();
+

@@ -350,19 +350,25 @@ const seleccionarProductoLista = ()=>{
 			seleccion = localStorage.getItem("producto");
 			seleccion = JSON.parse(seleccion);
 		}
-			let mostrar ="";
-			if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
-				if(e.target.id === e.target.parentElement.parentElement.id) mostrar= e.target.parentElement.parentElement	
-				else mostrar = e.target.parentElement;
-				mostrar.childNodes[2].textContent.toLowerCase()
-				mostrar = mostrar.childNodes[2].textContent.toLowerCase()
-				seleccion.push(mostrar);
-				localStorage.setItem("producto",JSON.stringify(seleccion))
-			
-			})
+		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+			seleccion =obtencionProductoClick(e,seleccion)
+		})
 		
-}	
+}
+const obtencionProductoClick=(evento,seleccion)=>{
+	let mostrar ="";
+			evento.target.id === evento.target.parentElement.parentElement.id? 
+			mostrar= evento.target.parentElement.parentElement:	
+			mostrar = evento.target.parentElement;
+			mostrar.childNodes[2].textContent.toLowerCase()
+			mostrar = mostrar.childNodes[2].textContent.toLowerCase()
+			seleccion.push(mostrar);
+			localStorage.setItem("producto",JSON.stringify(seleccion))
+			return seleccion
+}
+
 seleccionarProductoLista()
+
 
 
 export function mandarObjeto(){
