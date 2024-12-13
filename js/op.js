@@ -253,11 +253,10 @@ const eventoClick = function (e,tipo){
         return item[tipo] === verificar;
     });
 	listaFiltrada.length === document.querySelectorAll('.lista__productos__item').length ? 
-	
 	agregarListaHTML(listaJuegos):agregandoListaFiltrada(listaFiltrada);
 }
 
-//buscador funciones
+//barra busqueda funciones
 const buscador = ()=>{
 	const buscar = document.getElementById('buscar');
 	const resultados = document.getElementById('buscador');
@@ -278,7 +277,7 @@ const busquedaComprobar =(buscar='')=>{
 	agregarListaHTML(productoEncotrado);
 }
 
-//buscador productos relacionados
+//buscador productos relacionados 
 function buscadorAgregarHTMLRelacionado(producto={}){
 	const contenedorRelacionado = document.getElementById('productosRelacionados');
 	const p = document.createElement('P');
@@ -317,6 +316,7 @@ function agregarBorde(){
 	productosRelacionados.style.borderTop = `none`
 }
 }
+
 //seleccionar elemento relacionado
 const seleccionarResultado=(p="",producto={})=>{
 	p.addEventListener('click',()=>{
@@ -330,8 +330,69 @@ const seleccionarResultado=(p="",producto={})=>{
 }
 
 
+//seleccion del elemento para el carrito
+const seleccionarProductoLista = ()=>{
+	let seleccion=[]
+		if(localStorage.getItem("producto"))seleccion = obtenerStorage()
+		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+			seleccion =obtencionProductoClick(e,seleccion)
+			console.log(seleccion)
+			carritoSuperiorHTML(seleccion.length)
+		})
+		
+		
+}
 
-//inicio del programa
+const obtenerStorage = ()=>{
+	let seleccion = [];
+	seleccion = localStorage.getItem("producto");
+	seleccion = JSON.parse(seleccion);
+	return seleccion
+}
+
+//buscamoss el elemento padre y seleccionar el div nombre
+const obtencionProductoClick=(evento,seleccion)=>{
+	let mostrar ="";
+			evento.target.id === evento.target.parentElement.parentElement.id? 
+			mostrar= evento.target.parentElement.parentElement:	
+			mostrar = evento.target.parentElement;
+			//console.log(mostrar.childNodes)
+			mostrar = mostrar.childNodes[2].textContent.toLowerCase()
+			if(mostrar.length !== 5){
+				seleccion.push(mostrar)
+				localStorage.setItem("producto",JSON.stringify(seleccion))
+			};
+			
+			return seleccion
+}
+
+
+//cantidad de productos añadidos parte superior
+const carritoSuperiorHTML = (cantidad=0)=>{
+	const span = document.getElementById('carritoSuperior')||"";
+	
+	if(span)span.innerHTML= cantidad;
+	
+	
+
+} 
+
+const eliminarSpan =()=>{
+	const span = document.getElementById('spanCarrito');
+//mirar span condicion
+	if(span)span.parentElement.removeChild(span);
+}
+
+const carritoSuperior=()=>{
+	let productoAgregados = obtenerStorage() || [];
+	productoAgregados = productoAgregados.length
+	
+	productoAgregados!==0?carritoSuperiorHTML(productoAgregados): eliminarSpan()
+
+}
+
+
+//INICIO DEL PROGRAMA
 
 subMenu();
 desplegarFiltro();
@@ -341,35 +402,9 @@ filtrado(document.getElementById('filtros__genero'),'genero');
 buscador();
 buscadorProductosRelacionadosTeclado();
 
+if(localStorage.getItem("producto"))carritoSuperior();
 
-
-//seleccion del elemento para el carrito
-const seleccionarProductoLista = ()=>{
-	let seleccion=[]
-		if(localStorage.getItem("producto")){
-			seleccion = localStorage.getItem("producto");
-			seleccion = JSON.parse(seleccion);
-		}
-		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
-			seleccion =obtencionProductoClick(e,seleccion)
-		})
-		
-}
-const obtencionProductoClick=(evento,seleccion)=>{
-	let mostrar ="";
-			evento.target.id === evento.target.parentElement.parentElement.id? 
-			mostrar= evento.target.parentElement.parentElement:	
-			mostrar = evento.target.parentElement;
-			mostrar.childNodes[2].textContent.toLowerCase()
-			mostrar = mostrar.childNodes[2].textContent.toLowerCase()
-			seleccion.push(mostrar);
-			localStorage.setItem("producto",JSON.stringify(seleccion))
-			return seleccion
-}
-
-seleccionarProductoLista()
-
-
+seleccionarProductoLista();
 
 export function mandarObjeto(){
 	const objeto = listaJuegos;

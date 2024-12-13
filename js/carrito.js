@@ -6,7 +6,7 @@ const variablesGlobales = {
 }
 variablesGlobales.listaJuegos = mandarObjeto()||[] 
 variablesGlobales.producto = localStorage.getItem("producto");
-variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[];
+variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[]
 
 //FUNCIONES
 //verifico los listaJuegoscon con lo obtenido del local storage
@@ -19,12 +19,17 @@ const verificarElemento =()=>{
         productoVerificados = [...productoVerificados,...productoEncontrado];
         
     });
+    
     return productoVerificados;
 }
 
 const carritoVacio=()=>{
-    console.log("carrito esa vacio")
-    
+    const carritoVacio = document.getElementById('carritoVacio');
+    const finalizar = document.getElementById('finalizar');
+    const precioTotal = document.getElementById('precioTotal');
+    carritoVacio.style.display="flex";
+    finalizar.style.display="none";
+    precioTotal.style.display="none";
 }
 //agregar al carrito los productos seleccionados o filtrados
 const agregandoProductoCarrito=({nombre="",precio="",imagenURL=""},fragmento="")=>{
@@ -68,14 +73,77 @@ const añadirFragmento = (productos)=>{
 }
 //para simplificar la funcion para el operador
 const verificarAñadir = () =>{
+    const carritoVacio = document.getElementById('carritoVacio')||"";
+    carritoVacio.style.display="none";
     variablesGlobales.listaParaAgregar = verificarElemento()||[];
     añadirFragmento(variablesGlobales.listaParaAgregar)
+    
 }
 
+//eliminar producto de la lista
+const eliminarProducto = ()=>{
+    const seleccionar = document.getElementById('carritoProductos');
+    seleccionar.addEventListener('click',(e)=>{
+        const validar = e.target.textContent.toLowerCase() || "";
+        
+        if(validar === "x") eliminarStorage(e)
+    })
+}
+
+function eliminarProductoHTML(e){
+    const productoSeleccionado = e.target.parentElement.parentElement;
+    if(productoSeleccionado.tagName ==="ARTICLE")productoSeleccionado.parentElement.removeChild(productoSeleccionado)
+    
+}
+
+//modificarPrecioEliminado
+const precioModificado =(e)=>{
+        const total = precioTotal();
+        agregarTotalHTML(total);
+}
+
+//eliminamos producto del storage
+const eliminarStorage =(e)=>{
+
+    const nombreProducto = e.target.parentElement.parentElement.childNodes[2].textContent.toLowerCase()||"";
+    let listaCarrito = JSON.parse(localStorage.getItem("producto")) ||[];
+    let condicion = true; 
+    listaCarrito = listaCarrito.filter(item=>{
+        if(item!==nombreProducto||condicion === false){
+            return item!== nombreProducto ||condicion===false
+        }condicion=false;//productos iguales
+    })
+    localStorage.setItem("producto",JSON.stringify(listaCarrito));
+    if(listaCarrito.length === 0)carritoVacio();
+    eliminarProductoHTML(e);
+    precioModificado(e);
+}
+
+//calculando precio total y agregado html
+const agregarTotalHTML =(sumarProductos=0)=>{
+    const total = document.getElementById('total');
+    total.innerHTML = sumarProductos + ".000 ARS"; 
+}
+const precioTotal =()=>{
+    let sumarProductos = 0;
+    variablesGlobales.producto = localStorage.getItem("producto");
+    variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[]
+    const listaStorage = verificarElemento();
+    listaStorage.forEach((producto)=>{
+        sumarProductos += parseInt(producto.precio); 
+    })
+    return sumarProductos;
+}
+
+
+
 console.log(verificarElemento())
+
 
 
 //INICIO DEL PROGRAMA
 variablesGlobales.producto.length === 0?
 carritoVacio():verificarAñadir();
+eliminarProducto();
+agregarTotalHTML(precioTotal());
 
