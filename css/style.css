@@ -235,9 +235,6 @@ header{
         gap: 1.5rem;
         padding: 20px 20px;
         max-height: 210vh;
-        
-        
-        
         .lista__productos__item{
             
             text-align: center;
@@ -289,8 +286,8 @@ header{
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 30px;
     min-height: 100vh;
+    padding: 30px 30px;
     .carrito__titulo{
         h3{
             font-size: 2rem;
@@ -356,7 +353,7 @@ header{
     .carrito__botones{
         display: flex;
         justify-content: space-around;
-        
+        gap: 10px;
         button{
             background-color: rgb(121, 121, 121);
             font-weight: 800;
@@ -486,7 +483,7 @@ header{
 
 }
 
-@media screen and (max-width:400px){
+@media screen and (max-width:430px){
     header{
         .menu{
             
@@ -494,7 +491,8 @@ header{
     }
     .lista{
         .lista__productos{
-            
+            grid-template-columns: repeat(auto-fill,minmax(min(100%,11rem),.7fr));
+            justify-content: center;
         }
     }
 }
