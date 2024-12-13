@@ -11,10 +11,13 @@ body{
     background-color: black;
 }
 
+
+
+
 /*menu y filtrado*/
 header{
-    position: relative;
     box-shadow: 21px -8px 79px 25px rgba(163, 177, 198, 0.5), -2px 19px 59px rgba(124, 124, 124, 0.6);
+    position: relative;
     background-color: var(--fondo);
     z-index: 3;
     .menu{
@@ -38,14 +41,13 @@ header{
         }
         .menu__buscador{
             display: flex;
-                justify-content: center ;
-                background-color: rgb(34, 34, 41);
-                border-radius: 15px;
-                flex-grow: 1;
-                max-width: 700px;
-                margin: auto;
-                flex-direction: column;
-            
+            justify-content: center ;
+            background-color: rgb(34, 34, 41);
+            border-radius: 15px;
+            flex-grow: 1;
+            max-width: 700px;
+            margin: auto;
+            flex-direction: column;
             .menu__buscador__buscar{
                 display: flex;
                 align-items: center ;
@@ -70,11 +72,8 @@ header{
                 }
             }
             .menu__buscador__relacionado{
-                
-                
                 display: flex;
                 flex-direction: column;
-                
                 p{
                     cursor: pointer;
                     padding: 6px 8px;
@@ -134,8 +133,6 @@ header{
                 
             }
         }
-
-
         figure{
             width: 50px;
             height: 50px;
@@ -469,10 +466,26 @@ header{
 
 }
 
+@media screen and (max-width:700px){
+    header{
+        .menu{
+            max-width: 95vw;
+            .menu__secion--carrito{
+                ul{
+                    li:nth-child(2){
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
 @media screen and (max-width:400px){
     header{
         .menu{
-
+            
         }
     }
     .lista{
