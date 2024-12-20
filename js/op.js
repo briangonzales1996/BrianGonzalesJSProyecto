@@ -1,172 +1,26 @@
 
 "use strict" 
-//variables u objetos
-const listaJuegos =[{	
-	"nombre":"Silent Hill 2",
-	"id":1,
-	"genero":"horror",
-	"precio": "30.000",
-	"plataforma":"ps5",
-	"imagenURL": "./assets/silent-hill-2-ps5-245x300.jpg"
-},
-{
-	"nombre":"Alan Wake",
-	"id":2,
-	"genero":"horror",
-	"precio": "15.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/alan-wake-remastered-245x300.jpg"
- },
-{
-	"nombre":"Combo accion",
-	"id":3,
-	"genero":"accion",
-	"precio": "10.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/Combo-Accion-A-1-245x300.jpg"
- },
-{
-	"nombre":"Crash bandicoot",
-	"id":4,
-	"genero":"accion",
-	"precio": "4.000",
-	"plataforma":"ps3",
-	"imagenURL": "./assets/crash-bandicoot-245x300.jpg"
- },
-{
-	"nombre":"Cyberpuck",
-	"id":5,
-	"genero":"aventura",
-	"precio": "15.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/cyberpunk-2077-245x300.jpg"
- },
-{
-	"nombre":"Dragon ball Sparking Zero",
-	"id":6,
-	"genero":"lucha",
-	"precio": "35.000",
-	"plataforma":"ps5",
-	"imagenURL": "./assets/dragon-ball-sparking-zero-ps5-245x300.jpg"
- },
-{
-	"nombre":"Dragon ball kakarot",
-	"id":7,
-	"genero":"lucha",
-	"precio": "10.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/dragon-ball-z-kakarot-1-245x300.jpg"
- },
-{
-	"nombre":"Elden Ring",
-	"id":8,
-	"genero":"aventura",
-	"precio": "17.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/elden-ring-245x300.jpg"
- },
-{
-	"nombre":"Fallout 4",
-	"id":9,
-	"genero":"aventura",
-	"precio": "16.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/fallout-4-4-245x300.jpg"
- },
-{
-	"nombre":"God of War Asencion",
-	"id":10,
-	"genero":"accion",
-	"precio": "8.000",
-	"plataforma":"ps3",
-	"imagenURL": "./assets/god-of-war-ascension-1-245x300.jpg"
- },
-{
-	"nombre":"God of War Ragnarok",
-	"id":11,
-	"genero":"accion",
-	"precio": "30.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/god-of-war-ragnarok-245x300.jpg"
- },
-{
-	"nombre":"GTA San Andreas",
-	"id":12,
-	"genero":"realista",
-	"precio": "2.000",
-	"plataforma":"ps3",
-	"imagenURL": "./assets/gta-san-andreas-1-245x300.jpg"
- },
-{
-	"nombre":"Hogwarts legacy",
-	"id":13,
-	"genero":"aventura",
-	"precio": "30.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/hogwarts-legacy-245x300.jpg"
- },
-{
-	"nombre":"Spider Man 2",
-	"id":14,
-	"genero":"accion",
-	"precio": "36.000",
-	"plataforma":"ps5",
-	"imagenURL": "./assets/Marvel-Spiderman-2-245x300.jpg"
- },
-{
-	"nombre":"Combo superheroes",
-	"id":15,
-	"genero":"accion",
-	"precio": "15.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/oferta-combo-super-heroes-245x300.jpg"
- },
-{
-	"nombre":"Combo terror",
-	"id":16,
-	"genero":"HORROR",
-	"precio": "19.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/oferta-combo-terror-245x300.jpg"
- },
-{
-	"nombre":"Resident evil 4",
-	"id":17,
-	"genero":"supervivencia",
-	"precio": "24.000",
-	"plataforma":"ps4",
-	"imagenURL": "./assets/resident-evil-4-remake-245x300.jpg"
- },
-{
-	"nombre":"Resident evil 6",
-	"id":18,
-	"genero":"supervivencia",
-	"precio": "6.000",
-	"plataforma":"ps3",
-	"imagenURL": "./assets/resident-evil-6-ultimate-edition-1-245x300.jpg"
- },
-{
-	"nombre":"The last of us",
-	"id":19,
-	"genero":"supervivencia",
-	"precio": "5.000",
-	"plataforma":"ps3",
-	"imagenURL": "./assets/the-last-of-us-1-245x300.jpg"
- },
-{
-	"nombre":"Dead Space",
-	"id":20,
-	"genero":"horror",
-	"precio": "10.000",
-	"plataforma":"ps5",
-	"imagenURL": "./assets/dead-space-ps5-245x300.jpg"
- }
-]
+
+
+const peticionesProductos = async ()=>{
+	try{
+		const response = await fetch('../productos.json')
+		if(!response) throw new Error('error  en el sistemas, no se recibieron los datos')
+		const listaJuegos = await response.json();	
+		return listaJuegos;
+
+	}
+	catch(e){
+		console.log(e)
+		return[]
+	}
+}
 
 
 
 //funciones
 //despliegue del filtrado
+
 function subMenu(){
     const filtro = document.querySelectorAll(".subMenu");
     filtro.forEach((elemento)=>{
@@ -225,9 +79,11 @@ const crearListaHTML=({nombre = "",genero="",precio="",imagenURL=""},fragmento)=
 
 }
 //agregar elementos al HTML
-const agregarListaHTML=(lista = [])=>{
+const agregarListaHTML=async (lista = [])=>{
     let fragmento = document.createDocumentFragment();
-    lista.forEach((item)=>{
+    lista = await lista
+	
+	lista.forEach((item)=>{
         fragmento=crearListaHTML(item,fragmento);
     })
     if(document.getElementById('lista'))document.getElementById('lista').appendChild(fragmento);
@@ -238,8 +94,9 @@ const filtrado = (filtro='',tipo='')=>{
 	
 }
 
-function agregandoListaFiltrada(listaFiltrada=[]){
+ function agregandoListaFiltrada (listaFiltrada=[]){
 	//comprobamos lista vacia
+	
 	if(listaFiltrada.length !== 0 ){
 		const lista = document.getElementById('lista');
 		lista.innerHTML="";
@@ -247,13 +104,16 @@ function agregandoListaFiltrada(listaFiltrada=[]){
 	agregarListaHTML(listaFiltrada);
 }
 
-const eventoClick = function (e,tipo){
+const eventoClick = async function  (e,tipo){
     const verificar = e.target.textContent.toLowerCase().replace(/\s+/g, '');
-    const listaFiltrada=listaJuegos.filter(item=>{
-        return item[tipo] === verificar;
+	const lista = await listaJuegos;
+	
+    const listaFiltrada=lista.filter(item=>{
+        return item[tipo].toLowerCase() === verificar;
     });
+	
 	listaFiltrada.length === document.querySelectorAll('.lista__productos__item').length ? 
-	agregarListaHTML(listaJuegos):agregandoListaFiltrada(listaFiltrada);
+	agregarListaHTML(lista):agregandoListaFiltrada(listaFiltrada);
 }
 
 //barra busqueda funciones
@@ -262,17 +122,19 @@ const buscador = ()=>{
 	const resultados = document.getElementById('buscador');
 	if(buscar)buscar.addEventListener("click",()=>{		
 		busquedaComprobar(resultados.value)
+		
 		resultados.value="";
 		document.getElementById('productosRelacionados').innerHTML="";
 		productosRelacionados.style.borderTop = `none`;
 	})
 }
 
-const busquedaComprobar =(buscar='')=>{
+const busquedaComprobar = async (buscar='')=>{
 	let productoEncotrado = [];
-	for(let juego in listaJuegos){
-	let nombreJuego = listaJuegos[juego].nombre.toLowerCase();
-	if(nombreJuego.includes(buscar))productoEncotrado.push(listaJuegos[juego])
+	const lista =  await listaJuegos;
+	for(let juego in lista){
+	let nombreJuego = lista[juego].nombre.toLowerCase();
+	if(nombreJuego.includes(buscar))productoEncotrado.push(lista[juego])
 	}
 	agregarListaHTML(productoEncotrado);
 }
@@ -287,8 +149,9 @@ function buscadorAgregarHTMLRelacionado(producto={}){
 }
 
 
-const elementosResultado = (buscarProducto="")=>{
-	const resultados = listaJuegos.filter((juego)=>{
+const elementosResultado = async (buscarProducto="")=>{
+	const lista = await listaJuegos
+	const resultados = lista.filter((juego)=>{
 		return juego.nombre.toLowerCase().startsWith(buscarProducto.value.toLowerCase())
 	});
 	if(resultados.length===0)document.getElementById('productosRelacionados').style.borderTop = `none`
@@ -326,26 +189,35 @@ const seleccionarResultado=(p="",producto={})=>{
 		document.getElementById('productosRelacionados').innerHTML="";
 		document.getElementById('buscador').value = "";
 		productosRelacionados.style.borderTop = `none`
+
 	})
 }
 
 
 //seleccion del elemento para el carrito
-const seleccionarProductoLista = ()=>{
-	let seleccion=[]
-		if(localStorage.getItem("producto"))seleccion = obtenerStorage()
-		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",(e)=>{
+const seleccionarProductoLista  = async ()=>{
+		let seleccion=[]
+		
+		
+		if(localStorage.getItem("producto"))seleccion = obtenerStorage("producto")
+		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",async (e)=>{
 			seleccion =obtencionProductoClick(e,seleccion)
-			console.log(seleccion)
-			carritoSuperiorHTML(seleccion.length)
+			
+			carritoSuperiorHTML(seleccion.length);
+			comprobarCarritoDisplay('block')
+			const productosSeleccionados = await verificarElementoSeleccionado(seleccion);
+			console.log(productosSeleccionados)
+			sumarPrecios(productosSeleccionados)////////////////////////////////
+
 		})
+
 		
 		
 }
 
-const obtenerStorage = ()=>{
+const obtenerStorage = (llave)=>{
 	let seleccion = [];
-	seleccion = localStorage.getItem("producto");
+	seleccion = localStorage.getItem(llave);
 	seleccion = JSON.parse(seleccion);
 	return seleccion
 }
@@ -370,11 +242,7 @@ const obtencionProductoClick=(evento,seleccion)=>{
 //cantidad de productos añadidos parte superior
 const carritoSuperiorHTML = (cantidad=0)=>{
 	const span = document.getElementById('carritoSuperior')||"";
-	
 	if(span)span.innerHTML= cantidad;
-	
-	
-
 } 
 
 const eliminarSpan =()=>{
@@ -383,17 +251,70 @@ const eliminarSpan =()=>{
 	if(span)span.parentElement.removeChild(span);
 }
 
-const carritoSuperior=()=>{
-	let productoAgregados = obtenerStorage() || [];
-	productoAgregados = productoAgregados.length
-	
-	productoAgregados!==0?carritoSuperiorHTML(productoAgregados): eliminarSpan()
+const comprobarCarritoDisplay=(display)=>{
+	const carritoComprobar = document.getElementById('carritoSuperior');
+	carritoComprobar.style.display=display; 
+}
 
+const carritoSuperior=()=>{
+	const carritoComprobar = document.getElementById('carritoSuperior');
+	let productoAgregados = obtenerStorage("producto") || [];
+	productoAgregados = productoAgregados.length
+	productoAgregados!==0?carritoSuperiorHTML(productoAgregados): eliminarSpan()
+	if(productoAgregados === 0 && carritoComprobar)comprobarCarritoDisplay('none');
 }
 
 
-//INICIO DEL PROGRAMA
+//Modificando precio total del carrito superior
+const verificarElementoSeleccionado = async (seleccion)=>{
+	let  productoVerificados = [];
+	const lista = await listaJuegos
+	seleccion = localStorage.getItem("producto");
+	seleccion= JSON.parse(seleccion)||[]
+	seleccion.forEach(producto => {
+		const productoEncontrado = lista.filter((item)=>{
+			return item.nombre.toLowerCase() === producto;
+		});		
+		productoVerificados = [...productoVerificados,...productoEncontrado];
+	});
+	return productoVerificados;
+}
 
+
+const agregandoStorage =(precioTotal=0)=>{
+	localStorage.setItem("precio",precioTotal);
+}
+const sumarPreciosHTML=(precio)=>{
+	const contenedor = document.getElementById('carritoSuperiorTotal')
+	contenedor.innerHTML = (precio+".000");
+}
+
+const sumarPrecios = (productoSeleccion=[])=>{
+	let precioTotal = 0;
+	productoSeleccion.forEach(item=>{
+		precioTotal+= parseInt(item.precio);
+	})
+	sumarPreciosHTML(precioTotal);
+	agregandoStorage(precioTotal);
+}
+//verificamos  precio en el storage
+const verificarStoragePrecio=()=>{
+	if(localStorage.getItem('precio')){
+		let precioTotal = obtenerStorage('precio');
+		console.log(precioTotal)
+		sumarPreciosHTML(precioTotal)
+	}
+}
+
+
+
+
+
+
+//INICIO DEL PROGRAMA
+const listaJuegos = peticionesProductos()
+
+if(localStorage.getItem("producto") && document.getElementById('carritoSuperior'))comprobarCarritoDisplay('block');
 subMenu();
 desplegarFiltro();
 agregarListaHTML(listaJuegos); //cagando al doom la lista del objeto
@@ -403,12 +324,8 @@ buscador();
 buscadorProductosRelacionadosTeclado();
 
 if(localStorage.getItem("producto"))carritoSuperior();
-
 seleccionarProductoLista();
+verificarStoragePrecio()
 
-export function mandarObjeto(){
-	const objeto = listaJuegos;
-	return objeto
-}
 
 

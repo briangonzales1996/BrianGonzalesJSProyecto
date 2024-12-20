@@ -1,25 +1,43 @@
-import { mandarObjeto} from "./op.js";
+
+
+const peticionesProductos = async ()=>{
+	try{
+		const response = await fetch('../productos.json')
+		if(!response) throw new Error('error  en el sistemas, no se recibieron los datos')
+		const listaJuegos = await response.json();	
+		return listaJuegos;
+	}
+	catch(e){
+		console.log(e)
+		return[]
+	}
+}
+
 const variablesGlobales = {
     producto : [],
-    listaJuegos:[],
     listaParaAgregar:[]
 }
-variablesGlobales.listaJuegos = mandarObjeto()||[] 
+
+const listaJuegos = peticionesProductos() || [];
 variablesGlobales.producto = localStorage.getItem("producto");
 variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[]
 
 //FUNCIONES
 //verifico los listaJuegoscon con lo obtenido del local storage
-const verificarElemento =()=>{
+export const verificarElemento = async ()=>{
     let  productoVerificados = [];
+    const lista = await listaJuegos
+    variablesGlobales.producto = localStorage.getItem("producto");
+    variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[]
     variablesGlobales.producto.forEach(producto => {
-        const productoEncontrado = variablesGlobales.listaJuegos.filter((item)=>{
+        const productoEncontrado = lista.filter((item)=>{
             return item.nombre.toLowerCase() === producto;
+            
         });
+        
         productoVerificados = [...productoVerificados,...productoEncontrado];
         
     });
-    
     return productoVerificados;
 }
 
@@ -59,23 +77,26 @@ const agregandoProductoCarrito=({nombre="",precio="",imagenURL=""},fragmento="")
     article.appendChild(div2);
     article.appendChild(div3);
     fragmento.appendChild(article);
+    
 }
 const añadirFragmento = (productos)=>{
     const contenedor = document.getElementById('carritoProductos');
     const fragmento = document.createDocumentFragment();
     const contenedoProductos = document.createElement('DIV');
+    
     productos.forEach((item)=>{
         agregandoProductoCarrito(item,fragmento);
     })
     contenedoProductos.appendChild(fragmento);
     contenedor.appendChild(contenedoProductos)
     contenedoProductos.classList.add('carrito__contenedor-productos');
+    
 }
 //para simplificar la funcion para el operador
-const verificarAñadir = () =>{
+const verificarAñadir = async () =>{
     const carritoVacio = document.getElementById('carritoVacio')||"";
     carritoVacio.style.display="none";
-    variablesGlobales.listaParaAgregar = verificarElemento()||[];
+    variablesGlobales.listaParaAgregar = await verificarElemento()||[];
     añadirFragmento(variablesGlobales.listaParaAgregar)
     
 }
@@ -93,18 +114,19 @@ const eliminarProducto = ()=>{
 function eliminarProductoHTML(e){
     const productoSeleccionado = e.target.parentElement.parentElement;
     if(productoSeleccionado.tagName ==="ARTICLE")productoSeleccionado.parentElement.removeChild(productoSeleccionado)
-    
+        
 }
 
 //modificarPrecioEliminado
-const precioModificado =(e)=>{
-        const total = precioTotal();
+const precioModificado = async (e)=>{
+        const total =  await precioTotal();
+        
         agregarTotalHTML(total);
+        modificarPrecioStorage(total)
 }
 
 //eliminamos producto del storage
 const eliminarStorage =(e)=>{
-
     const nombreProducto = e.target.parentElement.parentElement.childNodes[2].textContent.toLowerCase()||"";
     let listaCarrito = JSON.parse(localStorage.getItem("producto")) ||[];
     let condicion = true; 
@@ -120,24 +142,29 @@ const eliminarStorage =(e)=>{
 }
 
 //calculando precio total y agregado html
-const agregarTotalHTML =(sumarProductos=0)=>{
+const agregarTotalHTML = async (sumarProductos=0)=>{
+    sumarProductos = await sumarProductos;
+    
+    //localStorage.setItem("precioTotal",sumarProductos);
     const total = document.getElementById('total');
     total.innerHTML = sumarProductos + ".000 ARS"; 
+    
 }
-const precioTotal =()=>{
+const precioTotal = async ()=>{
     let sumarProductos = 0;
-    variablesGlobales.producto = localStorage.getItem("producto");
-    variablesGlobales.producto= JSON.parse(variablesGlobales.producto)||[]
-    const listaStorage = verificarElemento();
+    const listaStorage =  await verificarElemento();
+    
     listaStorage.forEach((producto)=>{
         sumarProductos += parseInt(producto.precio); 
     })
     return sumarProductos;
 }
 
+const modificarPrecioStorage =(precio)=>{
+    localStorage.setItem('precio',precio)
+}
 
 
-console.log(verificarElemento())
 
 
 
