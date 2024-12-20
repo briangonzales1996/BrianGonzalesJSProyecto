@@ -1,7 +1,5 @@
 
 "use strict" 
-
-
 const peticionesProductos = async ()=>{
 	try{
 		const response = await fetch('../productos.json')
@@ -122,10 +120,11 @@ const buscador = ()=>{
 	const resultados = document.getElementById('buscador');
 	if(buscar)buscar.addEventListener("click",()=>{		
 		busquedaComprobar(resultados.value)
-		
 		resultados.value="";
+		modificarFondo('transparent')
 		document.getElementById('productosRelacionados').innerHTML="";
 		productosRelacionados.style.borderTop = `none`;
+		
 	})
 }
 
@@ -139,9 +138,10 @@ const busquedaComprobar = async (buscar='')=>{
 	agregarListaHTML(productoEncotrado);
 }
 
-//buscador productos relacionados 
+//buscador productos relacionados en el buscador
 function buscadorAgregarHTMLRelacionado(producto={}){
 	const contenedorRelacionado = document.getElementById('productosRelacionados');
+	contenedorRelacionado.classList.add('menu__buscador__relacionado');
 	const p = document.createElement('P');
 	p.textContent=(producto.nombre).toLowerCase();
 	contenedorRelacionado.appendChild(p);
@@ -154,31 +154,41 @@ const elementosResultado = async (buscarProducto="")=>{
 	const resultados = lista.filter((juego)=>{
 		return juego.nombre.toLowerCase().startsWith(buscarProducto.value.toLowerCase())
 	});
-	if(resultados.length===0)document.getElementById('productosRelacionados').style.borderTop = `none`
+	if(resultados.length===0){
+		document.getElementById('productosRelacionados').style.borderTop = `none`;
+		modificarFondo("transparent")
+	}
 	document.getElementById('productosRelacionados').innerHTML="";
 	resultados.forEach(producto=>{
 		document.getElementById('productosRelacionados').style.borderTop = `solid ${1}px rgba(${255},${255},${255},${0.168})`
 		buscadorAgregarHTMLRelacionado(producto);
-		
 	})
 	
 }
 
 const buscadorProductosRelacionadosTeclado = ()=>{
 	const buscarProducto = document.getElementById('buscador');
-	
 		if(buscarProducto)buscarProducto.addEventListener('input',(e)=>{
+			modificarFondo("#222229")
 			buscarProducto.value!==""?
 			elementosResultado(buscarProducto):
 			agregarBorde();
+			
 		})
 	
 function agregarBorde(){
 	const productosRelacionados = document.getElementById('productosRelacionados');
 	productosRelacionados.innerHTML="";
-	productosRelacionados.style.borderTop = `none`
+	productosRelacionados.style.borderTop = `none`;
+	modificarFondo('transparent')
 }
 }
+
+function modificarFondo(visible){
+	const borderRadio = document.querySelector('.menu__buscador');
+	borderRadio.style.backgroundColor= visible;
+}
+
 
 //seleccionar elemento relacionado
 const seleccionarResultado=(p="",producto={})=>{
@@ -189,16 +199,14 @@ const seleccionarResultado=(p="",producto={})=>{
 		document.getElementById('productosRelacionados').innerHTML="";
 		document.getElementById('buscador').value = "";
 		productosRelacionados.style.borderTop = `none`
-
+		modificarFondo('transparent')
 	})
 }
 
 
 //seleccion del elemento para el carrito
 const seleccionarProductoLista  = async ()=>{
-		let seleccion=[]
-		
-		
+		let seleccion=[];
 		if(localStorage.getItem("producto"))seleccion = obtenerStorage("producto")
 		if(document.getElementById('lista'))document.getElementById('lista').addEventListener("click",async (e)=>{
 			seleccion =obtencionProductoClick(e,seleccion)
@@ -208,11 +216,7 @@ const seleccionarProductoLista  = async ()=>{
 			const productosSeleccionados = await verificarElementoSeleccionado(seleccion);
 			console.log(productosSeleccionados)
 			sumarPrecios(productosSeleccionados)////////////////////////////////
-
 		})
-
-		
-		
 }
 
 const obtenerStorage = (llave)=>{
@@ -242,7 +246,13 @@ const obtencionProductoClick=(evento,seleccion)=>{
 //cantidad de productos añadidos parte superior
 const carritoSuperiorHTML = (cantidad=0)=>{
 	const span = document.getElementById('carritoSuperior')||"";
-	if(span)span.innerHTML= cantidad;
+	if(span){
+		span.innerHTML= cantidad;
+		span.style.animation = `carrito ${.6}s ease both`;
+		setTimeout(()=>{
+			span.style.animation = `none`;
+		},100)
+	}
 } 
 
 const eliminarSpan =()=>{
@@ -297,6 +307,7 @@ const sumarPrecios = (productoSeleccion=[])=>{
 	sumarPreciosHTML(precioTotal);
 	agregandoStorage(precioTotal);
 }
+
 //verificamos  precio en el storage
 const verificarStoragePrecio=()=>{
 	if(localStorage.getItem('precio')){
