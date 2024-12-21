@@ -73,9 +73,11 @@ const crearListaHTML=({nombre = "",genero="",precio="",imagenURL=""},fragmento)=
     productos.appendChild(p3);
     fragmento.appendChild(productos);
     return fragmento    
-    
-
 }
+
+
+
+
 //agregar elementos al HTML
 const agregarListaHTML=async (lista = [])=>{
     let fragmento = document.createDocumentFragment();
@@ -100,19 +102,64 @@ const filtrado = (filtro='',tipo='')=>{
 		lista.innerHTML="";
 	}
 	agregarListaHTML(listaFiltrada);
+	//eliminarEstilos();
 }
 
 const eventoClick = async function  (e,tipo){
     const verificar = e.target.textContent.toLowerCase().replace(/\s+/g, '');
 	const lista = await listaJuegos;
-	
+	const plataforma = document.getElementById('filtros__plataforma');
+	const genero = document.getElementById('filtros__genero');
     const listaFiltrada=lista.filter(item=>{
         return item[tipo].toLowerCase() === verificar;
     });
 	
-	listaFiltrada.length === document.querySelectorAll('.lista__productos__item').length ? 
-	agregarListaHTML(lista):agregandoListaFiltrada(listaFiltrada);
+	
+	if(listaFiltrada.length === document.querySelectorAll('.lista__productos__item').length){
+		
+		agregarListaHTML(lista)
+		eliminarEstilos(plataforma)
+		eliminarEstilos(genero)
+		
+	}
+	else{
+		agregandoListaFiltrada(listaFiltrada);
+		estiloFiltro(verificar,e,obetenerSubMenu(plataforma),plataforma,genero)
+		estiloFiltro(verificar,e,obetenerSubMenu(genero),plataforma,genero)
+	} 
+	
+	
 }
+
+const obetenerSubMenu = (subMenu)=>{
+	const subMenuArray = [];
+	[...subMenu.children].forEach((item)=>{
+		subMenuArray.push(item.textContent.toLowerCase().replace(/\s+/g, ''))
+	})
+	return subMenuArray
+}
+
+
+const eliminarEstilos=(tipo)=>{
+	
+	[...tipo.children].forEach(nodo=>{
+		nodo.style.color='inherit';
+	})
+	
+}
+
+const estiloFiltro =(verificar,seleccion,subMenu,plataforma,genero)=>{
+	subMenu.forEach((item)=>{
+		if(verificar === item){
+			eliminarEstilos(plataforma);
+			eliminarEstilos(genero)
+			seleccion.target.style.color='red';
+			
+		}
+	})
+}
+
+
 
 //barra busqueda funciones
 const buscador = ()=>{
@@ -214,7 +261,6 @@ const seleccionarProductoLista  = async ()=>{
 			carritoSuperiorHTML(seleccion.length);
 			comprobarCarritoDisplay('block')
 			const productosSeleccionados = await verificarElementoSeleccionado(seleccion);
-			console.log(productosSeleccionados)
 			sumarPrecios(productosSeleccionados)////////////////////////////////
 		})
 }

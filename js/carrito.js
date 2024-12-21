@@ -49,7 +49,27 @@ const carritoVacio=()=>{
     finalizar.style.display="none";
     precioTotal.style.display="none";
 }
+
+//añadir carrito agregar o quitar producto
+function aumentarProducto (){
+    const contenedor = document.createElement('DIV');
+    const boton1 = document.createElement('BUTTON');
+    const boton2 =document.createElement('BUTTON');
+    const p = document.createElement('P');
+
+    contenedor.classList.add('carrito__productos__cantidad');
+    boton1.textContent='Añadir';
+    boton2.textContent='Quitar';
+    p.textContent = '1';
+    
+    contenedor.appendChild(boton1);
+    contenedor.appendChild(p);
+    contenedor.appendChild(boton2);
+    return contenedor;
+}
+
 //agregar al carrito los productos seleccionados o filtrados
+
 const agregandoProductoCarrito=({nombre="",precio="",imagenURL=""},fragmento="")=>{
     
     const article = document.createElement('ARTICLE');
@@ -76,7 +96,11 @@ const agregandoProductoCarrito=({nombre="",precio="",imagenURL=""},fragmento="")
     article.appendChild(figure);
     article.appendChild(div2);
     article.appendChild(div3);
+
+    const botones = aumentarProducto();
+    article.appendChild(botones)
     fragmento.appendChild(article);
+    
     
 }
 const añadirFragmento = (productos)=>{
@@ -92,6 +116,9 @@ const añadirFragmento = (productos)=>{
     contenedoProductos.classList.add('carrito__contenedor-productos');
     
 }
+
+
+
 //para simplificar la funcion para el operador
 const verificarAñadir = async () =>{
     const carritoVacio = document.getElementById('carritoVacio')||"";
