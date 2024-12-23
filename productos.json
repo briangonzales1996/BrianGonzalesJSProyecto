@@ -4,7 +4,8 @@
 	"genero":"HORROR",
 	"precio": "30.000",
 	"plataforma":"ps5",
-	"imagenURL": "./assets/silent-hill-2-ps5-245x300.jpg"
+	"imagenURL": "./assets/silent-hill-2-ps5-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Alan Wake",
@@ -12,7 +13,8 @@
 	"genero":"HORROR",
 	"precio": "15.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/alan-wake-remastered-245x300.jpg"
+	"imagenURL": "./assets/alan-wake-remastered-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Combo accion",
@@ -20,7 +22,8 @@
 	"genero":"ACCION",
 	"precio": "10.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/Combo-Accion-A-1-245x300.jpg"
+	"imagenURL": "./assets/Combo-Accion-A-1-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Crash bandicoot",
@@ -28,7 +31,8 @@
 	"genero":"ACCION",
 	"precio": "4.000",
 	"plataforma":"ps3",
-	"imagenURL": "./assets/crash-bandicoot-245x300.jpg"
+	"imagenURL": "./assets/crash-bandicoot-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Cyberpuck",
@@ -36,7 +40,8 @@
 	"genero":"AVENTURA",
 	"precio": "15.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/cyberpunk-2077-245x300.jpg"
+	"imagenURL": "./assets/cyberpunk-2077-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Dragon ball Sparking Zero",
@@ -44,7 +49,8 @@
 	"genero":"LUCHA",
 	"precio": "35.000",
 	"plataforma":"ps5",
-	"imagenURL": "./assets/dragon-ball-sparking-zero-ps5-245x300.jpg"
+	"imagenURL": "./assets/dragon-ball-sparking-zero-ps5-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Dragon ball kakarot",
@@ -52,7 +58,8 @@
 	"genero":"LUCHA",
 	"precio": "10.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/dragon-ball-z-kakarot-1-245x300.jpg"
+	"imagenURL": "./assets/dragon-ball-z-kakarot-1-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Elden Ring",
@@ -60,7 +67,8 @@
 	"genero":"AVENTURA",
 	"precio": "17.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/elden-ring-245x300.jpg"
+	"imagenURL": "./assets/elden-ring-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Fallout 4",
@@ -68,7 +76,8 @@
 	"genero":"AVENTURA",
 	"precio": "16.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/fallout-4-4-245x300.jpg"
+	"imagenURL": "./assets/fallout-4-4-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"God of War Asencion",
@@ -76,7 +85,8 @@
 	"genero":"ACCION",
 	"precio": "8.000",
 	"plataforma":"ps3",
-	"imagenURL": "./assets/god-of-war-ascension-1-245x300.jpg"
+	"imagenURL": "./assets/god-of-war-ascension-1-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"God of War Ragnarok",
@@ -84,7 +94,8 @@
 	"genero":"ACCION",
 	"precio": "30.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/god-of-war-ragnarok-245x300.jpg"
+	"imagenURL": "./assets/god-of-war-ragnarok-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"GTA San Andreas",
@@ -92,7 +103,8 @@
 	"genero":"Realista",
 	"precio": "2.000",
 	"plataforma":"ps3",
-	"imagenURL": "./assets/gta-san-andreas-1-245x300.jpg"
+	"imagenURL": "./assets/gta-san-andreas-1-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Hogwarts legacy",
@@ -100,7 +112,8 @@
 	"genero":"Aventura",
 	"precio": "30.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/hogwarts-legacy-245x300.jpg"
+	"imagenURL": "./assets/hogwarts-legacy-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Spider Man 2",
@@ -108,7 +121,8 @@
 	"genero":"ACCION",
 	"precio": "36.000",
 	"plataforma":"ps5",
-	"imagenURL": "./assets/Marvel-Spiderman-2-245x300.jpg"
+	"imagenURL": "./assets/Marvel-Spiderman-2-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Combo superheroes",
@@ -116,7 +130,8 @@
 	"genero":"ACCION",
 	"precio": "15.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/oferta-combo-super-heroes-245x300.jpg"
+	"imagenURL": "./assets/oferta-combo-super-heroes-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Combo terror",
@@ -124,7 +139,8 @@
 	"genero":"HORROR",
 	"precio": "19.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/oferta-combo-terror-245x300.jpg"
+	"imagenURL": "./assets/oferta-combo-terror-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Resident evil 4",
@@ -132,7 +148,8 @@
 	"genero":"SUPERVIVENCIA",
 	"precio": "24.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/resident-evil-4-remake-245x300.jpg"
+	"imagenURL": "./assets/resident-evil-4-remake-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Resident evil 6",
@@ -140,7 +157,8 @@
 	"genero":"SUPERVIVENCIA",
 	"precio": "6.000",
 	"plataforma":"ps3",
-	"imagenURL": "./assets/resident-evil-6-ultimate-edition-1-245x300.jpg"
+	"imagenURL": "./assets/resident-evil-6-ultimate-edition-1-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"The last of us",
@@ -148,7 +166,8 @@
 	"genero":"SUPERVIVENCIA",
 	"precio": "5.000",
 	"plataforma":"ps3",
-	"imagenURL": "./assets/the-last-of-us-1-245x300.jpg"
+	"imagenURL": "./assets/the-last-of-us-1-245x300.jpg",
+	"cantidad" : 0
 },
 {
 	"nombre":"Dead Space",
@@ -156,6 +175,7 @@
 	"genero":"HORROR",
 	"precio": "10.000",
 	"plataforma":"ps4",
-	"imagenURL": "./assets/dead-space-ps5-245x300.jpg"
+	"imagenURL": "./assets/dead-space-ps5-245x300.jpg",
+	"cantidad" : 0
 }
 ]

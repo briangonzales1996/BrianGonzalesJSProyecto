@@ -39,7 +39,7 @@ const desplegarFiltro = ()=>{
 	//verifica si existe elemento del doom
 	if(left)left.style.left = 0;
     if(ocultarMenu)ocultarMenu.addEventListener('click',()=>{
-        left.style.left == "0px" ? left.style.left = `${-400}px` : left.style.left = `${0}px`;
+        left.style.left == "0px" ? left.style.left = `${-500}px` : left.style.left = `${0}px`;
     })
 }
 
@@ -265,7 +265,7 @@ const seleccionarProductoLista  = async ()=>{
 		})
 }
 
-const obtenerStorage = (llave)=>{
+export const obtenerStorage = (llave)=>{
 	let seleccion = [];
 	seleccion = localStorage.getItem(llave);
 	seleccion = JSON.parse(seleccion);
@@ -342,7 +342,7 @@ const agregandoStorage =(precioTotal=0)=>{
 }
 const sumarPreciosHTML=(precio)=>{
 	const contenedor = document.getElementById('carritoSuperiorTotal')
-	contenedor.innerHTML = (precio+".000");
+	if(contenedor)contenedor.innerHTML = (precio+".000");
 }
 
 const sumarPrecios = (productoSeleccion=[])=>{
@@ -358,7 +358,7 @@ const sumarPrecios = (productoSeleccion=[])=>{
 const verificarStoragePrecio=()=>{
 	if(localStorage.getItem('precio')){
 		let precioTotal = obtenerStorage('precio');
-		console.log(precioTotal)
+		
 		sumarPreciosHTML(precioTotal)
 	}
 }
