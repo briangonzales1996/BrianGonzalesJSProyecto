@@ -2,7 +2,7 @@
 "use strict" 
 const peticionesProductos = async ()=>{
 	try{
-		const response = await fetch('https://briangonzales1996.github.io/BrianGonzalesJSProyecto/productos.json')
+		const response = await fetch('../productos.json')
 		if(!response) throw new Error('error  en el sistemas, no se recibieron los datos')
 		const listaJuegos = await response.json();	
 		return listaJuegos;
