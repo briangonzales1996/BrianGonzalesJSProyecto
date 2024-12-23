@@ -324,7 +324,7 @@ header{
             font-weight: 700;
             text-align: center;
         }
-    }
+    }           
     div{
         .carrito__contenedor-productos{
             display: flex;
@@ -351,7 +351,7 @@ header{
                 }
                 figure{
                     width: 80px;
-                    height: 100px;
+                    
                     img{
                         width: 100%;
                         height: 100%;
@@ -560,6 +560,21 @@ header{
             justify-content: center;
         }
     }
+    .carrito{
+        div{
+            .carrito__contenedor-productos{
+                article{
+                    div:first-child{
+                        display: none;
+                    }
+                    figure{
+                        
+                    }
+                }
+            }
+        }
+    } 
+
 }
 
 
