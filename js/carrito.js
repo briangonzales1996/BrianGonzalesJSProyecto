@@ -62,7 +62,7 @@ function botonesAumentarProducto (){
     boton2.textContent='Quitar';
     p.textContent = '1';
     boton1.setAttribute('id','botonAñadir');
-    boton2.setAttribute('id','botonQuietar')
+    boton2.setAttribute('id','botonQuitar')
 
     contenedor.appendChild(boton1);
     contenedor.appendChild(p);
@@ -107,7 +107,7 @@ const agregandoProductoCarrito=({nombre="",precio="",imagenURL="",id=0},fragment
     fragmento.appendChild(article);
 }
 
-const añadirFragmento = (productos)=>{
+const añadirFragmento = (productos=[])=>{
     const contenedor = document.getElementById('carritoProductos');
     const fragmento = document.createDocumentFragment();
     const contenedoProductos = document.createElement('DIV');
@@ -128,7 +128,7 @@ const añadirFragmento = (productos)=>{
         
 }
 
-const actualizarCantidadProductos =(productosLista)=>{
+const actualizarCantidadProductos =(productosLista=[])=>{
     const productoContenedor = document.querySelector('.carrito__contenedor-productos')
     const children = productoContenedor.children;
     [...children].forEach(item=>{
@@ -205,21 +205,21 @@ const precioTotal = async ()=>{
 
 
 // modificar cantidad añadir y quitar.. producto
-const modificarPrecioStorage =(precio)=>{
+const modificarPrecioStorage =(precio=0)=>{
     localStorage.setItem('precio',precio)
 }
 
-const  agregarStorage = (key,valor)=>{
+const  agregarStorage = (key='',valor='')=>{
     let storage = JSON.stringify(valor);
     localStorage.setItem(key,storage);
     return storage;
 }
 
-const sumarCantidad =(cantidad)=>{
+const sumarCantidad =(cantidad=0)=>{
     cantidad++;
     return cantidad;
 }
-const restarCantidad =(cantidad)=>{
+const restarCantidad =(cantidad=0)=>{
     cantidad--;
     return cantidad;
 }
@@ -233,7 +233,7 @@ const modificarCantidadTexto = (boton='',operacion)=>{
     
 }
 
-const modificarPrecioTotalTexto= async (boton='',cantidad)=>{
+const modificarPrecioTotalTexto= async (boton='',cantidad=0)=>{
     const total = await precioTotal();
     const botonPrecioTotal = boton.closest(".carrito").children[2].lastElementChild;
     botonPrecioTotal.textContent = total +".000 ARS";
@@ -242,7 +242,7 @@ const modificarPrecioTotalTexto= async (boton='',cantidad)=>{
     if(0 === parseInt(total))carritoVacio();
 }
 
-const moodificarContenidoHTML = (productoStorage,botonNodo,operacion)=>{
+const moodificarContenidoHTML = (productoStorage=[],botonNodo='',operacion)=>{
     agregarStorage('producto',productoStorage);
     let cantidad = modificarCantidadTexto(botonNodo,operacion);
     modificarPrecioTotalTexto(botonNodo,cantidad);
@@ -250,20 +250,20 @@ const moodificarContenidoHTML = (productoStorage,botonNodo,operacion)=>{
 }
 
 //añadir producto de la lista
-const añadirProducto =(boton,productoStorage,botonId)=>{
+const añadirProducto =(boton='',productoStorage='',botonId='')=>{
     productoStorage.push(botonId.toLowerCase());
     moodificarContenidoHTML(productoStorage,boton,sumarCantidad)
 }
 
 //quitar producto de la  lista
-function quitarProducto (botonQuitar,productoStorage,botonId){
+function quitarProducto (botonQuitar='',productoStorage='',botonId=''){
     const posicion = productoStorage.indexOf(botonId.toLowerCase());
     productoStorage.splice(posicion,1);
     moodificarContenidoHTML(productoStorage,botonQuitar,restarCantidad);
     
 }
 
-function quitarAñadirProducto (botonSeleccionado,funcion){
+function quitarAñadirProducto (botonSeleccionado='',funcion){
     botonSeleccionado.addEventListener('click',(e)=>{
     const productoStorage = obtenerStorage('producto');     
     const botonId= botonSeleccionado.closest('[data-id]').childNodes[2].textContent;
@@ -275,7 +275,16 @@ function quitarAñadirProducto (botonSeleccionado,funcion){
 const cantidadNulaEliminar = (boton='')=>{
     boton = boton.closest('[data-id]');
     boton.parentElement.removeChild(boton)
-} 
+}
+
+//finalizar compra
+const finalizarCompra = ()=>{
+    const boton = document.getElementById('finalizar')||"";    
+    boton.addEventListener('click',()=>{
+        if(boton)console.log("el boton no existe")
+    })
+}
+
 
 
 //INICIO DEL PROGRAMA
@@ -283,4 +292,5 @@ variablesGlobales.producto.length === 0?
 carritoVacio():verificarAñadir();
 eliminarProducto();
 agregarTotalHTML(precioTotal());
+finalizarCompra()
 
