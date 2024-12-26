@@ -278,10 +278,18 @@ const cantidadNulaEliminar = (boton='')=>{
 }
 
 //finalizar compra
+const ventanaCompraFinalizada = ()=>{
+    Swal.fire({
+        title: "La compra se realizo exitosamente",
+        icon: "success",
+        draggable: true
+      });
+}
+
 const finalizarCompra = ()=>{
     const boton = document.getElementById('finalizar')||"";    
     boton.addEventListener('click',()=>{
-        if(boton)console.log("el boton no existe")
+        if(boton)ventanaCompraFinalizada()
     })
 }
 

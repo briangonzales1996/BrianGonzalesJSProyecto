@@ -399,7 +399,7 @@ const verificarStoragePrecio=()=>{
 const libreriaAgregadoPoducto =(nombre)=>{
 	Toastify({
 		text: `Se agrego correctamente ${nombre}`,
-		duration: 2000
+		duration: 1500
 		}).showToast();
 }
 
