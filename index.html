@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MisterioGaming</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
@@ -14,7 +15,6 @@
                 <p id="desplegar__menu" class="material-symbols-outlined">menu</p>
                 <figure><a href="./index.html"><img src="./assets/log.png" alt="logo"></a></figure>
             </div>
-           
             <form class="menu__buscador" action="">
                 <div class="menu__buscador__buscar">
                     <label  for="buscador"></label>
@@ -47,7 +47,21 @@
             </div>
         </nav>
     </header>
-    
+
+    <section class="seccion-principal">
+        <div class="principal">
+            <article>
+                <h1>Compra de juegos digitales de forma facil y segura</h1>
+                <div></div>
+                <a href="#lista">VER LISTA DE JUEGOS</a>
+            </article>
+            <div>
+                <span></span>
+                <p>4,9 de 3.820 en <span>Facebook Reviews</span></p>
+            </div>
+        </div>
+    </section>
+
     <aside id="filtros" class="filtros">
         <figure>
             <img src="./assets/RockStar-Games-logo.png" alt="imagen de games" width="120px" height="100px">
@@ -86,12 +100,27 @@
         </div>
         
     </aside>
-
+    
     <main class="lista">
         <section id="lista" class="lista__productos">
+            
 
         </section>
-    </main>    
+    </main>
+
+    <aside id="error" class="error">
+<!--        
+        <div class="error__container">
+            <figure>
+                <img src="./assets/error.png" alt="error del sistema">
+            </figure>
+            <h1>ERROR A L ENCONTRAR LOS DATOS PORFAVOR!</h1>
+            <p>No se puede accender a la paganina, espere que se solucione el problema e intentelo mas tarde</p>
+        </div>
+        -->
+    </aside>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>    
     <script type="module" src="./js/op.js" defer></script>
     
 </body>

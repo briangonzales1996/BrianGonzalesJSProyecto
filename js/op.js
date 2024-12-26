@@ -9,7 +9,7 @@ const peticionesProductos = async ()=>{
 
 	}
 	catch(e){
-		console.log(e)
+		errorPoductos(e)	
 		return[]
 	}
 }
@@ -17,8 +17,38 @@ const peticionesProductos = async ()=>{
 
 
 //funciones
-//despliegue del filtrado
+//error al cargar peticiones
+const errorHTML = ()=>{
+	const errorContainer = document.getElementById('error');
+	const div =document.createElement('DIV');
+	const figure = document.createElement('FIGURE');
+	const img = document.createElement('IMG');
+	const titulo = document.createElement('H1');
+	const p = document.createElement('P');
 
+	div.classList.add('error__container');
+	img.setAttribute('src','./assets/error.png');
+	img.setAttribute('alt','error del sistema');
+	titulo.textContent='ERROR AL ENCONTRAR LOS DATOS!';
+	p.textContent='No se puede acceder a la pagina, espere que se solucione el problema e intentelo mas tarde';
+
+	figure.appendChild(img);
+	div.appendChild(figure);
+	div.appendChild(titulo);
+	div.appendChild(p);
+	errorContainer.appendChild(div);
+}
+
+function errorPoductos (error){	
+	errorHTML();
+	const lista = document.getElementById('lista')
+	const filtro = document.querySelector('.filtros');
+	filtro.style.display='none';
+	lista.style.display = 'none';
+}
+
+
+//despliegue del filtrado
 function subMenu(){
     const filtro = document.querySelectorAll(".subMenu");
     filtro.forEach((elemento)=>{
@@ -39,7 +69,7 @@ const desplegarFiltro = ()=>{
 	//verifica si existe elemento del doom
 	if(left)left.style.left = 0;
     if(ocultarMenu)ocultarMenu.addEventListener('click',()=>{
-        left.style.left == "0px" ? left.style.left = `${-500}px` : left.style.left = `${0}px`;
+        left.style.left == "0px" ? left.style.left = `${-700}px` : left.style.left = `${0}px`;
     })
 }
 
@@ -283,6 +313,8 @@ const obtencionProductoClick=(evento,seleccion)=>{
 			if(mostrar.length !== 5){
 				seleccion.push(mostrar)
 				localStorage.setItem("producto",JSON.stringify(seleccion))
+				libreriaAgregadoPoducto(mostrar);
+				
 			};
 			
 			return seleccion
@@ -363,7 +395,13 @@ const verificarStoragePrecio=()=>{
 	}
 }
 
-
+//libreria toastify
+const libreriaAgregadoPoducto =(nombre)=>{
+	Toastify({
+		text: `Se agrego correctamente ${nombre}`,
+		duration: 2000
+		}).showToast();
+}
 
 
 
@@ -383,6 +421,5 @@ buscadorProductosRelacionadosTeclado();
 if(localStorage.getItem("producto"))carritoSuperior();
 seleccionarProductoLista();
 verificarStoragePrecio()
-
 
 
