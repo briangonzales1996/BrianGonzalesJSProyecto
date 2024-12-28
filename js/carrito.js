@@ -1,3 +1,4 @@
+"use strict" 
 import { obtenerStorage } from "./op.js";
 
 const peticionesProductos = async ()=>{
@@ -124,7 +125,7 @@ const añadirFragmento = (productos=[])=>{
     
 }
 ///////////////////////////////////////////
-  function modificarCantidadProductos (producto){
+function modificarCantidadProductos (producto){
         
 }
 
@@ -283,7 +284,7 @@ const ventanaCompraFinalizada = ()=>{
         title: "La compra se realizo exitosamente",
         icon: "success",
         draggable: true
-      });
+    });
 }
 
 const finalizarCompra = ()=>{

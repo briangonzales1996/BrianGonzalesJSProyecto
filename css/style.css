@@ -180,8 +180,6 @@ header{
     padding: 50px 30px;
     z-index: 1;
     left: 0;
-    
-    
     figure{
         display: flex;
         justify-content: center;
@@ -243,8 +241,6 @@ header{
                 }
             }
         }
-        
-        
     }
 }
 .ocultar{
@@ -311,7 +307,6 @@ header{
 
 /*seccion lista de productos*/
 .lista{
-    
     .lista__productos{
         display: grid;
         max-width: 850px;
@@ -637,7 +632,6 @@ header{
             grid-template-rows: 1fr;
             grid-auto-rows: 1fr;/*mirar esta propiedad*/
         }
-       
     }
     
 
@@ -659,12 +653,29 @@ header{
     .carrito{
         div{
             .carrito__contenedor-productos{
+                
                 article{
+                    
                     div:first-child{
                         display: none;
                     }
                     figure{
                         
+                    }
+                    div:nth-child(3){
+                        font-size: 1.1rem;
+                    }
+                    div:nth-child(4){
+                        font-size: 1.1rem;
+                        margin: 0;
+                    }
+                    .carrito__productos__cantidad{
+                        p{
+                            font-size: 1rem;
+                        }
+                        button{
+                            font-size: .9rem;
+                        }
                     }
                 }
             }

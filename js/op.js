@@ -6,14 +6,12 @@ const peticionesProductos = async ()=>{
 		if(!response) throw new Error('error  en el sistemas, no se recibieron los datos')
 		const listaJuegos = await response.json();	
 		return listaJuegos;
-
 	}
 	catch(e){
 		errorPoductos(e)	
 		return[]
 	}
 }
-
 
 
 //funciones
@@ -112,7 +110,6 @@ const crearListaHTML=({nombre = "",genero="",precio="",imagenURL=""},fragmento)=
 const agregarListaHTML=async (lista = [])=>{
     let fragmento = document.createDocumentFragment();
     lista = await lista
-	
 	lista.forEach((item)=>{
         fragmento=crearListaHTML(item,fragmento);
     })
@@ -124,7 +121,7 @@ const filtrado = (filtro='',tipo='')=>{
 	
 }
 
- function agregandoListaFiltrada (listaFiltrada=[]){
+function agregandoListaFiltrada (listaFiltrada=[]){
 	//comprobamos lista vacia
 	
 	if(listaFiltrada.length !== 0 ){
@@ -209,8 +206,8 @@ const busquedaComprobar = async (buscar='')=>{
 	let productoEncotrado = [];
 	const lista =  await listaJuegos;
 	for(let juego in lista){
-	let nombreJuego = lista[juego].nombre.toLowerCase();
-	if(nombreJuego.includes(buscar))productoEncotrado.push(lista[juego])
+		let nombreJuego = lista[juego].nombre.toLowerCase();
+		if(nombreJuego.includes(buscar))productoEncotrado.push(lista[juego])
 	}
 	agregarListaHTML(productoEncotrado);
 }
@@ -316,7 +313,6 @@ const obtencionProductoClick=(evento,seleccion)=>{
 				libreriaAgregadoPoducto(mostrar);
 				
 			};
-			
 			return seleccion
 }
 
@@ -390,7 +386,6 @@ const sumarPrecios = (productoSeleccion=[])=>{
 const verificarStoragePrecio=()=>{
 	if(localStorage.getItem('precio')){
 		let precioTotal = obtenerStorage('precio');
-		
 		sumarPreciosHTML(precioTotal)
 	}
 }
@@ -398,8 +393,8 @@ const verificarStoragePrecio=()=>{
 //libreria toastify
 const libreriaAgregadoPoducto =(nombre)=>{
 	Toastify({
-		text: `Se agrego correctamente ${nombre}`,
-		duration: 1500
+			text: `Se agrego correctamente ${nombre}`,
+			duration: 1500
 		}).showToast();
 }
 
