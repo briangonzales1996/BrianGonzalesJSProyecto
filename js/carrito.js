@@ -1,9 +1,8 @@
-"use strict" 
 import { obtenerStorage } from "./op.js";
 
 const peticionesProductos = async ()=>{
 	try{
-		const response = await fetch('/productos.json')
+		const response = await fetch('../productos.json')
 		if(!response) throw new Error('error  en el sistemas, no se recibieron los datos')
 		const listaJuegos = await response.json();	
 		return listaJuegos;
@@ -125,7 +124,7 @@ const añadirFragmento = (productos=[])=>{
     
 }
 ///////////////////////////////////////////
-function modificarCantidadProductos (producto){
+  function modificarCantidadProductos (producto){
         
 }
 
@@ -284,7 +283,7 @@ const ventanaCompraFinalizada = ()=>{
         title: "La compra se realizo exitosamente",
         icon: "success",
         draggable: true
-    });
+      });
 }
 
 const finalizarCompra = ()=>{
