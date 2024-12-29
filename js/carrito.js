@@ -2,7 +2,7 @@ import { obtenerStorage } from "./op.js";
 
 const peticionesProductos = async ()=>{
 	try{
-		const response = await fetch('./productos.json')
+		const response = await fetch('../productos.json')
 		if(!response) throw new Error('error  en el sistemas, no se recibieron los datos')
 		const listaJuegos = await response.json();	
 		return listaJuegos;
@@ -229,7 +229,10 @@ const modificarCantidadTexto = (boton='',operacion)=>{
     let cantidad = parseInt(boton.textContent);
     cantidad = operacion(cantidad);
     boton.textContent = cantidad;
+    animacion(boton);
+
     return cantidad;
+    
     
 }
 
@@ -237,6 +240,7 @@ const modificarPrecioTotalTexto= async (boton='',cantidad=0)=>{
     const total = await precioTotal();
     const botonPrecioTotal = boton.closest(".carrito").children[2].lastElementChild;
     botonPrecioTotal.textContent = total +".000 ARS";
+    animacion(botonPrecioTotal)
     agregarStorage('precio',total);
     if(cantidad==0)cantidadNulaEliminar(boton);
     if(0 === parseInt(total))carritoVacio();
@@ -247,6 +251,13 @@ const moodificarContenidoHTML = (productoStorage=[],botonNodo='',operacion)=>{
     let cantidad = modificarCantidadTexto(botonNodo,operacion);
     modificarPrecioTotalTexto(botonNodo,cantidad);
     
+}
+
+function animacion  (boton){
+    boton.style.animation =`cantidad ${.6}s ease both`;
+    setTimeout(()=>{
+        boton.style.animation =`none`;
+    },200)
 }
 
 //añadir producto de la lista

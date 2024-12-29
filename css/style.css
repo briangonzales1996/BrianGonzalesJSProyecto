@@ -66,7 +66,7 @@ header{
                     padding: 4px;
                     flex-grow: 1;
                     font-size: 1rem;
-                    
+                    border-radius:15px ;
                 }
                 span{
                     cursor: pointer;
@@ -407,6 +407,7 @@ header{
     gap: 2rem;
     min-height: 100vh;
     padding: 30px 30px;
+    
     .carrito__titulo{
         h3{
             font-size: 2rem;
@@ -465,8 +466,9 @@ header{
                     justify-content: space-around;
                     
                     align-items: center;
-                    p{
+                    p{  
                         font-size: 1.2rem;
+                        
                     }
                     button{
                         padding: 5px;
@@ -701,5 +703,15 @@ header{
     }
     100%{
         translate: 0 -4px;
+    }
+}
+
+
+@keyframes cantidad {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
     }
 }

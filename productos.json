@@ -174,8 +174,83 @@
 	"id":20,
 	"genero":"HORROR",
 	"precio": "10.000",
-	"plataforma":"ps4",
+	"plataforma":"ps5",
 	"imagenURL": "./assets/dead-space-ps5-245x300.jpg",
+	"cantidad" : 0
+},
+
+
+
+{
+	"nombre":"Demon Slayer",
+	"id":21,
+	"genero":"LUCHA",
+	"precio": "30.000",
+	"plataforma":"ps4",
+	"imagenURL": "./assets/demon-slayer-kimetsu-no-yaiba-the-hinokami-chronicles-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"GTA the Trilogy",
+	"id":22,
+	"genero":"Realista",
+	"precio": "20.000",
+	"plataforma":"ps4",
+	"imagenURL": "./assets/gta-the-trilogy-the-definitive-edition-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"Mortal Kombat",
+	"id":23,
+	"genero":"LUCHA",
+	"precio": "40.000",
+	"plataforma":"ps5",
+	"imagenURL": "./assets/Mortal-Kombat-1-2-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"Hitman",
+	"id":24,
+	"genero":"AVENTURA",
+	"precio": "15.000",
+	"plataforma":"ps4",
+	"imagenURL": "./assets/HITMAN-World-of-Assassination-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"The Evil Within",
+	"id":25,
+	"genero":"HORROR",
+	"precio": "4.000",
+	"plataforma":"ps3",
+	"imagenURL": "./assets/the-evil-within-digital-bundle-1-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"Watch Dogs",
+	"id":26,
+	"genero":"AVENTURA",
+	"precio": "6.000",
+	"plataforma":"ps3",
+	"imagenURL": "./assets/Watch-Dogs-4-1-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"Life is Strangi",
+	"id":27,
+	"genero":"AVENTURA",
+	"precio": "4.000",
+	"plataforma":"ps3",
+	"imagenURL": "./assets/Life-is-Strange-Complete-Season-1-245x300.jpg",
+	"cantidad" : 0
+},
+{
+	"nombre":"Red Dead Redemption",
+	"id":28,
+	"genero":"Realista",
+	"precio": "16.000",
+	"plataforma":"ps4",
+	"imagenURL": "./assets/red-dead-redemption-2-1-245x300.jpg",
 	"cantidad" : 0
 }
 ]
