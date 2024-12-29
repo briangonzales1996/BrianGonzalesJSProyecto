@@ -316,7 +316,7 @@ header{
         grid-template-rows: 260px;
         grid-auto-rows: 260px;/*mirar esta propiedad*/
         gap: 1.5rem;
-        padding: 20px 20px;
+        padding: 50px 20px;
             
         .lista__productos__item{
             
@@ -558,6 +558,47 @@ header{
     }
 }
 
+footer{
+    background-color: rgb(2, 5, 30);
+    .footer{
+        display: flex;
+        gap: 2rem;
+        font-size: 1.1rem;
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px 10px;
+        .nosotros{
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            div:nth-child(2){
+                height: 4px;
+                background-color: rgba(240, 248, 255, 0.227);
+                width: 100px;
+            }
+        }
+        .promociones{
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            div:nth-child(2){
+                height: 4px;
+                background-color: rgba(240, 248, 255, 0.227);
+                width: 100px;
+            }
+            div:last-child{
+                a{
+                    text-decoration: none;
+                    color: var(--fontColor);
+                    padding: 10px;
+                    background-color: rgb(38, 39, 41);
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+    
+}
 
 
 @media screen and (max-width:1300px){
@@ -635,7 +676,11 @@ header{
             grid-auto-rows: 1fr;/*mirar esta propiedad*/
         }
     }
-    
+    footer{
+        .footer{
+            flex-direction: column;
+        }
+    }
 
 }
 
