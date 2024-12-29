@@ -577,10 +577,11 @@ footer{
                 width: 100px;
             }
             div:last-child{
-                i{
+                div{
                     width: 30px;
                     height: 30px;
                     display: inline-block;
+                    background-color: transparent;
                     img{
                         width: 100%;
                         height: 100%;
