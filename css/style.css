@@ -576,6 +576,17 @@ footer{
                 background-color: rgba(240, 248, 255, 0.227);
                 width: 100px;
             }
+            div:last-child{
+                i{
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
         }
         .promociones{
             display: flex;
